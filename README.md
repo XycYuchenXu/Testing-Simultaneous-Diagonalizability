@@ -1,13 +1,13 @@
 # eigTest (development in progress)
 
 ## Intro & Setup
-This `R` package is developed for testing simultaneous diagonalizability.
+An `R` package `eigTest` is developed and available for testing simultaneous diagonalizability.
 
-To install, use the code in `R`:
+To install, run the following code in `R`:
 `devtools::install_github('XycYuchenXu/eigTest', build_vignettes = T)`
 
 ## Usage
-The package has the following functionalities:
+That package has the following functionalities:
 
 1. Check whether the means of two random square matrices (`matrixA` and `matrixB`) with dimension `d`-by-`d` are simultaneously diagonalizable, either considering the commutator of the two matrices (use function `commutatorTest`), or using the log-likelihood ratio test framework (`projTest`), given asymptotic limiting covariance matrices (`covMatA` and `covMatB`) and a convergence rate (`cn`). For both functions, one needs to input an array of two matrices (`A` such that `A[1,,] = matrixA` and `A[2,,] = matrixB`), an array of two limiting covariance matrices (`cov.arr` such that `cov.arr[1,,] = covMatA` and `cov.arr[2,,] = covMatB`), and the convergence rate (`cn`).
 
@@ -23,12 +23,19 @@ The package has the following functionalities:
 
 7. For more details, read the vignette: `browseVignettes('eigTest')` and the paper 'Testing Simultaneous Diagonalizability'.
 
-## Implementations
-The folder `implementations` includes different simulation studies and applications.
+## Code
+The folder `code` includes the scripts for different simulation studies and applications in the paper.
 
-In particular, the simulation studies include examples for commutator-based test, LLR test, multi-sample eigenvector test and partial test.
+In particular, the simulation studies include examples for commutator-based test, LLR test, multi-sample eigenvector test and partial test. And applications include VAR examples on macroeconomic data of 8 countries and Markovian model on Hudson river discharge data.
 
-Applications include VAR examples on macroeconomic data of 8 countries and Markovian model on Hudson river discharge data, both with data supplied in the R package or the data folder.
+## Data
+The folder `data` includes the `R` objects of:
+1. the macroeconomic time series of 8 countries `countryMacro.RData`;
+2. the array of estimated VAR coefficient matrices for 8 countries `countryCoeff.RData`;
+3. the estimated covariance of VAR coefficient matrices for 8 countries `countryCovar.RData`;
+4. the weekly streamflow discharge data of Hudson river `hudsonWeekly.RData`;
+5. the daily streamflow discharge data of Hudson river `hudsonDaily.RData`.
+These datasets are also available from the package `eigTest`.
 
 ## Output
-The folder `output` includes the raw p-values replicates from simulation studies in folder `implementations`, and generated plots from both simulations and applications in `implementations`.
+The folder `output` includes the replicates of raw p-values from simulation studies in folder `code`. The sub-folder `Plots` includes generated plots from both simulations and applications in `code`.

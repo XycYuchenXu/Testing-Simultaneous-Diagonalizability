@@ -1,9 +1,7 @@
-Please replace the contents of this file with relevant instructions for your repository or remove this file entirely.
-
-This directory would generally contain the real data files (or facsimile versions of them in place of confidential data) and simulated data files.
-
-Cleaned data that are produced by processing raw input data might also be placed here.
-
-Code to generate the simulated data and (if relevant) and facsimile data provided in place of confidential real data might also be placed here. 
-
-Code for data cleaning could potentially also be placed here rather than in `code`.
+This `data` folder includes the `R` objects of:
+1. the macroeconomic time series of 8 countries `countryMacro.RData`;
+2. the array of estimated VAR coefficient matrices for 8 countries `countryCoeff.RData`;
+3. the estimated covariance of VAR coefficient matrices for 8 countries `countryCovar.RData`;
+4. the weekly streamflow discharge data of Hudson river `hudsonWeekly.RData`;
+5. the daily streamflow discharge data of Hudson river `hudsonDaily.RData`.
+These datasets are also available from the package `eigTest`.
