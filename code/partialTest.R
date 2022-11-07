@@ -4,6 +4,7 @@ library(foreach)
 library(doSNOW)
 library(tidyverse)
 library(tikzDevice)
+library(ggpattern)
 
 
 ###### generate / load pvalues ######
@@ -87,24 +88,69 @@ breaks = seq(0,1,0.05); binwidth = 0.05
 
 tikz(file = "output/Plots/PvaluePartial.tikz", standAlone=F, width = 6, height = 4.5)
 ggplot(data_p %>% filter(K == 'K = 2')) +
-  geom_histogram(aes(x = pvalue, y = ..density..*binwidth, fill = SNR),
-                 breaks = breaks,
-                 position = position_dodge()) + theme_bw()+
-  ggtitle('P-value histogram from partial test') +
+  geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
+                         pattern = rep(c(rep('none', 20),
+                                         rep('stripe', 20*length(SNRS))), length(n) * 2),
+                         pattern_angle = rep(rep(seq(0, 180, length = length(SNRS)+2)[-(length(SNRS)+2)], each = 20),
+                                             length(n) * 2) - 90,
+                         pattern_size = 0.1, pattern_colour = 'grey80', pattern_spacing = 0.015,
+                         breaks = breaks,
+                         position = position_dodge()) + theme_bw()+
+  ggtitle('p-value histogram from partial test') +
   facet_grid(vars(testType), vars(SampleSize), #ncol = length(n), dir = 'v',
              labeller = labeller(testType = c(`Chi` = 'Chi test with $\\widehat{V}$',
                                               `Gam` = 'Gamma test with $\\widehat{V}$'))) +
   theme(legend.position = 'bottom', plot.title = element_text(hjust = 0.5),
-        strip.background =element_rect(size = 0), aspect.ratio = 1,
+        strip.background =element_rect(linewidth = 0), aspect.ratio = 1,
         panel.spacing.x = unit(3, 'mm'), legend.key.height = unit(0.5, 'cm'),
         legend.title = element_text(margin = margin(r = 3, unit = 'mm')),
         legend.text = element_text(margin = margin(r = 5, unit = 'mm')),
-        panel.border = element_rect(size = 1), strip.placement = 'inside') +
-  guides(fill=guide_legend(ncol=4)) + xlab('P values') + ylab('Proportion') +
+        panel.border = element_rect(linewidth = 1), strip.placement = 'inside') +
+  guides(fill=guide_legend(ncol=4,
+                           override.aes = list(
+                             pattern_size = 0.1, pattern_colour = 'grey80', pattern_spacing = 0.015,
+                             pattern = c('none', rep('stripe', length(SNRS))),
+                             pattern_angle = seq(0, 180, length = length(SNRS)+2)[-(length(SNRS)+2)] - 90
+                           ))) +
+  xlab('p-values') + ylab('Proportion') +
   labs(fill = 'SNR:') +
   scale_fill_discrete()+
   scale_y_continuous(breaks = c(0.05, 0.25, 0.5, 0.75, 1), trans = 'sqrt')
 dev.off()
+
+p1 = ggplot(data_p %>% filter(K == 'K = 2') %>%
+              mutate(testType = recode_factor(testType,
+                                              `Chi` = 'Chi test with $\\widehat{V}$',
+                                              `Gam` = 'Gamma test with $\\widehat{V}$'))) +
+  geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
+                         pattern = rep(c(rep('none', 20),
+                                         rep('stripe', 20*length(SNRS))), length(n) * 2),
+                         pattern_angle = rep(rep(seq(0, 180, length = length(SNRS)+2)[-(length(SNRS)+2)], each = 20),
+                                             length(n) * 2) - 90,
+                         pattern_size = 0.1, pattern_colour = 'grey80', pattern_spacing = 0.015,
+                         breaks = breaks,
+                         position = position_dodge()) + theme_bw()+
+  ggtitle('p-value histogram from partial test') +
+  facet_grid(vars(testType), vars(SampleSize), #ncol = length(n), dir = 'v',
+             labeller = as_labeller(TeX, default = label_parsed)) +
+  theme(legend.position = 'bottom', plot.title = element_text(hjust = 0.5),
+        strip.background =element_rect(linewidth = 0), aspect.ratio = 1,
+        panel.spacing.x = unit(3, 'mm'), legend.key.height = unit(0.5, 'cm'),
+        legend.title = element_text(margin = margin(r = 3, unit = 'mm')),
+        legend.text = element_text(margin = margin(r = 5, unit = 'mm')),
+        panel.border = element_rect(linewidth = 1), strip.placement = 'inside') +
+  guides(fill=guide_legend(ncol=4,
+                           override.aes = list(
+                             pattern_size = 0.1, pattern_colour = 'grey80', pattern_spacing = 0.015,
+                             pattern = c('none', rep('stripe', length(SNRS))),
+                             pattern_angle = seq(0, 180, length = length(SNRS)+2)[-(length(SNRS)+2)] - 90
+                           ))) +
+  xlab('p-values') + ylab('Proportion') +
+  labs(fill = 'SNR:') +
+  scale_fill_discrete(labels = TeX(levels(data_p$SNR))) +
+  scale_y_continuous(breaks = c(0.05, 0.25, 0.5, 0.75, 1), trans = 'sqrt')
+p1
+ggsave(filename = 'output/Plots/PvaluePartial.png', p1, width = 6, height = 4.5, units = 'in')
 
 
 ###### Type I/II errors ######

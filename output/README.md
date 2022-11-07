@@ -1,5 +1,11 @@
-Please replace the contents of this file with relevant instructions for your repository or remove this file entirely.
-
-This directory would generally contain results of simulations or real data analyses. Also, intermediate output files might be placed here, cached to avoid having to rerun computationally-intensive steps of the workflow. 
-
-
+This `output` folder includes output objects from manuscript implementations with multiple formats. In particular:
+1. `RData`:
+    a. `commutatorTest.RData`: raw p-values for commutator-based test simulations (Section 3 & 6.2);
+    b. `LLRTest.RData`: raw p-values for log-likelihood ratio test simulations (Section B at supplementary);
+    c. `highD_Test.RData`: raw p-values for two-sample test simulations under high-dimensional setting (with increasing and relatively larger dimensions, Section A.3 at supplementary);
+    d. `multiTest.RData`: raw p-values for multi-sample test simulations (Section 4 & 6.3);
+    e. `partialTest.RData`: raw p-values for partial test simulations (Section 5 & 6.4);
+2. `Error Tables.xlsx`: the summarised type I/II errors for all simulations setups;
+3. `Plots`:
+    a. `tikz`: folder of source `tikz` files for compiling the manuscript;
+    b. `png`: folder of `png` files for easy visualization.

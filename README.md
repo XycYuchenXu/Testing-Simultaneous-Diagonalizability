@@ -1,7 +1,9 @@
-# eigTest (development in progress)
+# Testing Simultaneous Diagonalizability
 
-## Intro & Setup
-An `R` package `eigTest` is developed and available for testing simultaneous diagonalizability.
+This is the reproducible repository for the paper. It mainly relys on the `R` package `eigTest` developed by the authors.
+
+## Setup
+The `R` package `eigTest` is available at Github for testing simultaneous diagonalizability.
 
 To install, run the following code in `R`:
 `devtools::install_github('XycYuchenXu/eigTest', build_vignettes = T)`
@@ -38,4 +40,4 @@ The folder `data` includes the `R` objects of:
 These datasets are also available from the package `eigTest`.
 
 ## Output
-The folder `output` includes the replicates of raw p-values from simulation studies in folder `code`. The sub-folder `Plots` includes generated plots from both simulations and applications in `code`.
+The folder `output` includes the replicates of raw p-values from simulation studies in folder `code`. The sub-folder `Plots` includes generated plots from both simulations and applications in `code`, with either `tikz` or `png` format.

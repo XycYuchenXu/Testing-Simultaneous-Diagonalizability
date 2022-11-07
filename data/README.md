@@ -4,4 +4,4 @@ This `data` folder includes the `R` objects of:
 3. the estimated covariance of VAR coefficient matrices for 8 countries `countryCovar.RData`;
 4. the weekly streamflow discharge data of Hudson river `hudsonWeekly.RData`;
 5. the daily streamflow discharge data of Hudson river `hudsonDaily.RData`.
-These datasets are also available from the package `eigTest`.
+These datasets are also available from the `R` package `eigTest`.

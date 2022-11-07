@@ -4,11 +4,12 @@ library(foreach)
 library(doSNOW)
 library(tidyverse)
 library(tikzDevice)
+library(ggpattern)
 
 
 ###### generate / load pvalues ######
 # simulate pvalues from scratch
-simu_pval = T#FALSE
+simu_pval = FALSE
 
 d = 5
 p = 2
@@ -107,23 +108,73 @@ if (simu_pval) {
 binwidth = 0.05
 breaks = seq(0, 1, 0.05)
 
-tikz(file = "output/Plots/PvalueLLR.tikz", standAlone=F, width = 6, height = 7.5)
+tikz(file = "output/Plots/tikz/PvalueLLR.tikz", standAlone=F, width = 6, height = 7.5)
 ggplot(data_l %>% filter(covType == 'Plugin')) +
-  geom_histogram(aes(x = pvalue, y = ..density..*binwidth, fill = SNR),
-                 breaks = breaks,
-                 position = position_dodge()) + theme_bw()+
+  geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
+                         pattern = rep(c(rep('none', 20 * length(n)),
+                                         rep(c(rep('none', 20),
+                                               rep('stripe', 20*length(SNRS))),
+                                             length(n))), 2),
+                         pattern_angle = rep(c(rep(0, 20 * length(n)),
+                                               rep(rep(seq(0, 180, length = length(SNRS)+2)[-(length(SNRS)+2)], each = 20),
+                                                   length(n))), 2) - 90,
+                         pattern_size = 0.1, pattern_colour = 'grey80', pattern_spacing = 0.015,
+                         breaks = breaks, position = position_dodge()) + theme_bw()+
   ggtitle('p-value histogram from LLR test') +
   facet_grid(vars(spaceType), vars(SampleSize)) +
   scale_y_continuous(breaks = c(0.05, 0.25, 0.5, 0.75, 1), trans = 'sqrt')+
   theme(legend.position = 'bottom', plot.title = element_text(hjust = 0.5),
-        panel.border = element_rect(size = 1), aspect.ratio = 1,
+        panel.border = element_rect(linewidth = 1), aspect.ratio = 1,
         panel.spacing.x = unit(4, 'mm'), legend.key.height = unit(0.5, 'cm'),
         legend.title = element_text(margin = margin(r = 3, unit = 'mm')),
         legend.text = element_text(margin = margin(r = 5, unit = 'mm')),
-        strip.background =element_rect(fill="white", size = 0)) +
-  guides(fill=guide_legend(ncol=3)) + xlab('P values') + ylab('Proportion') +
+        strip.background =element_rect(fill="white", linewidth = 0)) +
+  guides(fill=guide_legend(ncol=3,
+                           override.aes = list(
+                             pattern_size = 0.1, pattern_colour = 'grey80', pattern_spacing = 0.015,
+                             pattern = c('none', rep('stripe', length(SNRS))),
+                             pattern_angle = seq(0, 180, length = length(SNRS)+2)[-(length(SNRS)+2)] - 90
+                           ))) +
+  xlab('p-values') + ylab('Proportion') +
   labs(fill = 'SNR:')
 dev.off()
+
+p1 = ggplot(data_l %>% filter(covType == 'Plugin') %>%
+              mutate(spaceType = recode_factor(spaceType,
+                                               `Oracle eqref{eqn:polyP}` = 'Oracle (B.5)',
+                                               `Plugin eqref{eqn:polyP}` = 'Plugin (B.5)',
+                                               `Oracle eqref{eqn:eigvP}` = 'Oracle (B.6)',
+                                               `Plugin eqref{eqn:eigvP}` = 'Plugin (B.6)'))) +
+  geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
+                         pattern = rep(c(rep('none', 20 * length(n)),
+                                         rep(c(rep('none', 20),
+                                               rep('stripe', 20*length(SNRS))),
+                                             length(n))), 2),
+                         pattern_angle = rep(c(rep(0, 20 * length(n)),
+                                               rep(rep(seq(0, 180, length = length(SNRS)+2)[-(length(SNRS)+2)], each = 20),
+                                                   length(n))), 2) - 90,
+                         pattern_size = 0.1, pattern_colour = 'grey80', pattern_spacing = 0.015,
+                         breaks = breaks, position = position_dodge()) + theme_bw()+
+  ggtitle('p-value histogram from LLR test') +
+  facet_grid(vars(spaceType), vars(SampleSize), labeller = as_labeller(TeX, default = label_parsed)) +
+  scale_y_continuous(breaks = c(0.05, 0.25, 0.5, 0.75, 1), trans = 'sqrt')+
+  scale_fill_discrete(labels = TeX(levels(data_l$SNR))) +
+  theme(legend.position = 'bottom', plot.title = element_text(hjust = 0.5),
+        panel.border = element_rect(linewidth = 1), aspect.ratio = 1,
+        panel.spacing.x = unit(4, 'mm'), legend.key.height = unit(0.5, 'cm'),
+        legend.title = element_text(margin = margin(r = 3, unit = 'mm')),
+        legend.text = element_text(margin = margin(r = 5, unit = 'mm')),
+        strip.background =element_rect(fill="white", linewidth = 0)) +
+  guides(fill=guide_legend(ncol=3,
+                           override.aes = list(
+                             pattern_size = 0.1, pattern_colour = 'grey80', pattern_spacing = 0.015,
+                             pattern = c('none', rep('stripe', length(SNRS))),
+                             pattern_angle = seq(0, 180, length = length(SNRS)+2)[-(length(SNRS)+2)] - 90
+                           ))) +
+  xlab('p-values') + ylab('Proportion') +
+  labs(fill = 'SNR:')
+p1
+ggsave(filename = 'output/Plots/png/PvalueLLR.png', p1, width = 6, height = 7.5, units = 'in')
 
 
 ###### Type I/II errors ######
