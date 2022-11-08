@@ -1,3 +1,4 @@
+#devtools::install_github('XycYuchenXu/eigTest', force = T, build_vignettes = F)
 library(eigTest)
 library(tidyverse)
 library(tikzDevice)
@@ -10,6 +11,7 @@ data(hudsonDaily); data(hudsonWeekly)
 hudsonPlot = rbind(cbind(hudsonDaily, reso = 'Daily discharge (2015 - 2020)'),
                    cbind(hudsonWeekly, reso = 'Weekly discharge (1979 - 2014)'))
 
+# generate tikz file
 tikz(file = "output/Plots/tikz/Streamflow.tikz", standAlone=F, width = 7, height = 4.5)
 ggplot(hudsonPlot, aes(x = datetime)) + facet_wrap(~reso, scales = 'free_x', ncol = 1) +
   geom_ribbon_pattern(aes(ymin = rep(0, length(datetime)),
@@ -43,6 +45,7 @@ ggplot(hudsonPlot, aes(x = datetime)) + facet_wrap(~reso, scales = 'free_x', nco
                        labels = c('Drought (0 - 25)', 'Normal (25 - 75)', 'Flooding (75 - 100)'))
 dev.off()
 
+# generate png file
 p1 = ggplot(hudsonPlot, aes(x = datetime)) + facet_wrap(~reso, scales = 'free_x', ncol = 1) +
   geom_ribbon_pattern(aes(ymin = rep(0, length(datetime)),
                           ymax = p25_va, fill = 'Drought'), alpha = 0.3,
@@ -78,6 +81,7 @@ ggsave(filename = 'output/Plots/png/Streamflow.png', p1, width = 7, height = 4.5
 
 
 ###### transition probabilities ######
+# estimates
 labelTab = cbind(hudsonDaily$Level, hudsonWeekly$Level)
 L = nrow(hudsonWeekly)
 
@@ -109,6 +113,7 @@ for (j in 1:p) {
   }
 }
 
+# reshape for plot
 dailyTran = as_tibble(matTran[1,,]) %>%
   mutate(From = colnames(matTran[1,,])) %>%
   pivot_longer(cols = 1:d, names_to = 'To') %>%
@@ -121,6 +126,7 @@ weeklyTran = as_tibble(matTran[2,,]) %>%
 
 tranMats = rbind(dailyTran, weeklyTran)
 
+# generate tikz file
 tikz(file = "output/Plots/tikz/tranMat.tikz", standAlone=F, width =7.5, height = 4)
 ggplot(tranMats, aes(x = To, y = From, fill = value)) +
   geom_tile(color = 'white')+
@@ -146,6 +152,7 @@ ggplot(tranMats, aes(x = To, y = From, fill = value)) +
   guides(fill = guide_colorbar(title.vjust = 0.8, barwidth = 9, barheight = 1))
 dev.off()
 
+# generate png file
 p2 = ggplot(tranMats, aes(x = To, y = From, fill = value)) +
   geom_tile(color = 'white')+
   scale_fill_gradient2(low = "white", high = "black", limit = c(0,1), space = "Lab",

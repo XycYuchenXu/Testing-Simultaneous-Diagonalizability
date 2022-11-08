@@ -7,8 +7,8 @@ library(tikzDevice)
 library(ggpattern)
 
 
-###### generate / load pvalues ######
-# simulate pvalues from scratch
+###### generate / load p-values ######
+# simulate / load p-values
 simu_pval = FALSE
 
 samples = 200
@@ -86,6 +86,7 @@ if (simu_pval) {
 ###### plot histograms ######
 breaks = seq(0,1,0.05); binwidth = 0.05
 
+# generate tikz file
 tikz(file = "output/Plots/PvaluePartial.tikz", standAlone=F, width = 6, height = 4.5)
 ggplot(data_p %>% filter(K == 'K = 2')) +
   geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
@@ -118,6 +119,7 @@ ggplot(data_p %>% filter(K == 'K = 2')) +
   scale_y_continuous(breaks = c(0.05, 0.25, 0.5, 0.75, 1), trans = 'sqrt')
 dev.off()
 
+# generate png file
 p1 = ggplot(data_p %>% filter(K == 'K = 2') %>%
               mutate(testType = recode_factor(testType,
                                               `Chi` = 'Chi test with $\\widehat{V}$',

@@ -7,6 +7,7 @@ library(tikzDevice)
 
 
 ###### time series plot ######
+# merge macro-economic time series
 c2p = as_tibble(as.matrix(countryMacro[[1]])) %>% mutate(country = names(countryMacro)[1], Quarters = time(countryMacro[[1]]))
 for (i in 2:length(countryMacro)) {
   c2p = as_tibble(as.matrix(countryMacro[[i]])) %>% mutate(country = names(countryMacro[i]), Quarters = time(countryMacro[[i]])) %>%
@@ -22,6 +23,7 @@ names(labNames) = names(c2p)[1:3]
 c2p = pivot_longer(c2p, cols = c(GDP, M2, REER), names_to = 'key', values_to = 'value')
 c2p$country = factor(c2p$country, levels = rev(names(countryMacro)))
 
+# generate tikz file
 tikz('output/Plots/tikz/ts.tikz', standAlone = F, width = 6, height = 3)
 ggplot(data = c2p) +
   geom_path(aes(x = Quarters, y = value, color = country, linetype = country), size = 1.5) +
@@ -36,6 +38,7 @@ ggplot(data = c2p) +
   guides(col=guide_legend(ncol=4))
 dev.off()
 
+# generate png file
 p1 = ggplot(data = c2p) +
   geom_path(aes(x = Quarters, y = value, color = country, linetype = country), size = 1.5) +
   facet_wrap(~key, scales = 'free_y', labeller = labeller(key = TeX(labNames))) +
@@ -70,17 +73,18 @@ countryCovar_t = countryCovar[,
 eigTest(countryCoeff_t, cn = sqrt(m), cov.arr = countryCovar_t, testType = 'chi', param.out = T)
 eigTest(countryCoeff_t, cn = sqrt(m), cov.arr = countryCovar_t, testType = 'gam', param.out = T)
 
+# partial test, k = 2, Corollary 5.1
+partialTest(countryCoeff_t, cn = sqrt(m), k = 2, cov.arr = countryCovar_t, testType = 'gam', param.out = T)
+
 # partial test, k = 1, Proposition 5.2 & Corollary 5.1
 partialTest(countryCoeff_t, cn = sqrt(m), k = 1, cov.arr = countryCovar_t, testType = 'chi', param.out = T)
 partialTest(countryCoeff_t, cn = sqrt(m), k = 1, cov.arr = countryCovar_t, testType = 'gam', param.out = T)
 
-# partial test, k = 2, Corollary 5.1
-partialTest(countryCoeff_t, cn = sqrt(m), k = 2, cov.arr = countryCovar_t, testType = 'gam', param.out = T)
-
-# estimated (partially) common eigenvectors
+# estimate common eigenvectors
 V = JDTE(countryCoeff_t)
 V
 
+# estimate partially common eigenvectors
 Q = expmPartSchur(countryCoeff_t, k = 2, warmup = T)
 B = array(0, dim = c(p, d, d))
 for (i in 1:p) {
@@ -91,20 +95,21 @@ Q[,1:2] %*% V
 
 
 ###### continent-grouped test ######
-# Asia, Corollary 4.1
+# Asia, Corollary 4.1 (Proposition 4.2)
 eigTest(countryCoeff_t[1:3,,], cn = sqrt(m), cov.arr = countryCovar_t[1:3,,], testType = 'chi', param.out = T)
 eigTest(countryCoeff_t[1:3,,], cn = sqrt(m), cov.arr = countryCovar_t[1:3,,], testType = 'gam', param.out = T)
 
-# Europe, Corollary 4.1
+# Europe, Corollary 4.1 (Proposition 4.2)
 eigTest(countryCoeff_t[4:6,,], cn = sqrt(m), cov.arr = countryCovar_t[4:6,,], testType = 'chi', param.out = T)
 eigTest(countryCoeff_t[4:6,,], cn = sqrt(m), cov.arr = countryCovar_t[4:6,,], testType = 'gam', param.out = T)
 
-# North America, Corollary 4.1
+# North America, Corollary 4.1 (Proposition 4.2)
 eigTest(countryCoeff_t[7:8,,], cn = sqrt(m), cov.arr = countryCovar_t[7:8,,], testType = 'chi', param.out = T)
 eigTest(countryCoeff_t[7:8,,], cn = sqrt(m), cov.arr = countryCovar_t[7:8,,], testType = 'gam', param.out = T)
 
 
 ###### pairwise commutator test ######
+# estimate p-value matrix
 countries = names(countryMacro)
 comm.pair.test = 0.5*diag(length(countries))
 for (i in 1:length(countries)) {
@@ -119,11 +124,10 @@ colnames(comm.pair.test) = countries
 rownames(comm.pair.test) = countries
 comm.pair.test
 
+# structure for heatmap plot
 comm.pair.complete = comm.pair.test + t(comm.pair.test)
-
 pair.test2plot = melt(comm.pair.complete, na.rm = TRUE)
 pair.test2plot$value = round(pair.test2plot$value, 3)
-
 text2plot = pair.test2plot
 
 groupMat = matrix(NA, nrow = length(countries), ncol = length(countries))
@@ -135,6 +139,7 @@ groupMat[7:8,7:8] = 'NA'
 groupMat = melt(groupMat, na.rm = T)
 groupMat$value = as.factor(groupMat$value)
 
+# generate tikz file
 tikz('output/Plots/tikz/pvalMat.tikz', standAlone = F, width = 5, height = 4.5)
 ggplot(data = pair.test2plot, aes(x = Var2, y = Var1, fill = value)) +
   geom_tile(color = "white")+
@@ -164,6 +169,7 @@ ggplot(data = pair.test2plot, aes(x = Var2, y = Var1, fill = value)) +
   geom_tile(data = groupMat, aes(x = Var1, y = Var2), colour = "red", fill = NA, size = 1)
 dev.off()
 
+# generate png file
 p2 = ggplot(data = pair.test2plot, aes(x = Var2, y = Var1, fill = value)) +
   geom_tile(color = "white")+
   scale_fill_gradient2(low = "white", high = "black",

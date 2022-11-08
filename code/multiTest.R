@@ -7,8 +7,8 @@ library(tikzDevice)
 library(ggpattern)
 
 
-###### generate / load pvalues ######
-# simulate pvalues from scratch
+###### generate / load p-values ######
+# simulate / load p-values
 simu_pval = FALSE
 
 samples = 200
@@ -82,6 +82,7 @@ if (simu_pval) {
 binwidth = 0.05
 breaks = seq(0, 1, 0.05)
 
+# generate tikz file
 tikz(file = "output/Plots/tikz/PvalueMulti.tikz", standAlone=F,width = 7, height = 6)
 ggplot(data_m) +
   geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
@@ -116,6 +117,7 @@ ggplot(data_m) +
   scale_y_continuous(breaks = c(0.05, 0.25, 0.5, 0.75, 1), trans = 'sqrt')
 dev.off()
 
+# generate png file
 p1 = ggplot(data_m %>%
               mutate(testType = recode_factor(testType,
                                               `Chi_0` = 'Chi test with $V$',

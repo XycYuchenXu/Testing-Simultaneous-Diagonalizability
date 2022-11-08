@@ -7,8 +7,8 @@ library(tikzDevice)
 library(ggpattern)
 
 
-###### generate / load pvalues ######
-# simulate pvalues from scratch
+###### generate / load p-values ######
+# simulate / load p-values
 simu_pval = FALSE
 
 d = 5
@@ -57,10 +57,11 @@ if (simu_pval) {
 }
 
 
-###### plot histograms ######
+###### plot p-value histograms ######
 binwidth = 0.05
 breaks = seq(0, 1, 0.05)
 
+# generate tikz file
 tikz(file = "output/Plots/tikz/PvalueCommutator.tikz", standAlone=F,width = 6, height = 3)
 ggplot(data_c) +
   geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
@@ -89,6 +90,7 @@ ggplot(data_c) +
   labs(fill = 'SNR:')
 dev.off()
 
+# generate png file
 p1 = ggplot(data_c) +
   geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
                          pattern = rep(c(rep('none', 20),

@@ -1,3 +1,4 @@
+#devtools::install_github('XycYuchenXu/eigTest', force = T, build_vignettes = F)
 library(eigTest)
 library(foreach)
 library(doSNOW)
@@ -6,8 +7,8 @@ library(reshape2)
 #library(tikzDevice)
 
 
-###### generate / load pvalues ######
-# simulate pvalues from scratch
+###### generate / load p-values ######
+# simulate / load p-values
 simu_pval = FALSE
 
 d = 2:20
@@ -113,7 +114,11 @@ if (simu_pval) {
   stopCluster(cl)
   save(data_highD, file = 'output/highD_test.RData')
 } else {
-  data_highD = load('output/highD_Test.RData')
+  load('output/highD_Test.RData')
 }
 
 
+###### Test sizes ######
+data_highD_summary = data_highD %>%
+  group_by(covType, spaceType, Dimension, SNR, SampleSize, testType) %>%
+  summarise(RejRate = mean(pvalue <= 0.05), df = mean(df)) %>% print(n = nrow(.))
