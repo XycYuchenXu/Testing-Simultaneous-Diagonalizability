@@ -1,0 +1,382 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{natbib}
+\usepackage{url} % not crucial - just used below for the URL 
+\usepackage{chngcntr}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{rotating}
+
+%\pdfminorversion=4
+% NOTE: To produce blinded version, replace "0" with "1" below.
+\newcommand{\blind}{0}
+
+% DON'T change margins - should be 1 inch all around.
+\addtolength{\oddsidemargin}{-.5in}%
+\addtolength{\evensidemargin}{-1in}%
+\addtolength{\textwidth}{1in}%
+\addtolength{\textheight}{1.7in}%
+\addtolength{\topmargin}{-1in}%
+
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+
+\RequirePackage[OT1]{fontenc}
+\usepackage{amsthm,amsfonts,amssymb,mathtools,tikz}
+\usepackage{graphicx,bm,environ}
+\usepackage{mathabx}
+\usepackage{float}
+\usepackage[boxed, linesnumbered,ruled,lined,commentsnumbered]{algorithm2e}
+\RequirePackage{natbib}
+\usepackage{xr-hyper}
+\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+% provide arXiv number if available:
+%\arxiv{2101.07776}
+
+% put your definitions there:
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newtheorem{ass}{Assumption}
+\newcommand{\assautorefname}{Assumption}
+\newtheorem{thm}{Theorem}
+\numberwithin{thm}{section}
+\newcommand{\thmautorefname}{Theorem}
+\newtheorem{defn}{Definition}
+\numberwithin{defn}{section}
+\newcommand{\defnautorefname}{Definition}
+\newtheorem{lem}{Lemma}
+\numberwithin{lem}{section}
+\newcommand{\lemautorefname}{Lemma}
+\newtheorem{prop}{Proposition}
+\numberwithin{prop}{section}
+\newcommand{\propautorefname}{Proposition}
+\newtheorem{cor}{Corollary}
+\numberwithin{cor}{section}
+\newcommand{\corautorefname}{Corollary}
+\newtheorem{rem}{Remark}
+\numberwithin{rem}{section}
+\newcommand{\remautorefname}{Remark}
+\renewcommand{\sectionautorefname}{Section}
+\let\subsectionautorefname\sectionautorefname 	\let\subsubsectionautorefname\sectionautorefname
+\renewcommand{\algorithmautorefname}{Algorithm}
+\renewcommand{\thealgocf}{B.\arabic{algocf}}
+
+\Crefname{ass}{Assumption}{Assumptions}
+\Crefname{prop}{Proposition}{Propositions}
+\Crefname{section}{Section}{Sections}
+\Crefname{appendix}{Appendix}{Appendices}
+
+
+\DeclareMathOperator*{\argmin}{arg min}
+\DeclareMathOperator*{\argmax}{arg max}
+\DeclareMathOperator{\Vector}{vec}
+\DeclareMathOperator{\Vech}{vech}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\offvec}{offvec}
+\DeclareMathOperator{\blkdiag}{blkdiag}
+\DeclareMathOperator{\SNR}{SNR}
+\DeclareMathOperator{\mat}{mat}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\rank}{\operatorname{rk}} 
+%\endlocaldefs
+
+\newenvironment{ass*}
+ {\expandafter\def\expandafter\theass\expandafter{\theass*}\ass}
+ {\endass}
+%\newtheorem{assumpB}{Assumption}
+%\newcommand{\assumpBautorefname}{Assumption}
+%\renewcommand\theassumpB{\arabic{assumpB}^{*}}
+%\Crefname{assumpB}{Assumption}{Assumptions}
+
+
+%\addbibresource{main.bib}
+
+\makeatletter
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+    \externaldocument[][nocite]{#1}%
+    \addFileDependency{#1.tex}%
+    \addFileDependency{#1.aux}%
+}
+
+\myexternaldocument{../jasa-testing_simultaneous_diagonalizability}
+
+
+\title{Response to the referee reports on the manuscript ``Testing Simultaneous Diagonalizability"}
+
+\author{Yuchen Xu, Marie-C. D\"uker, David S. Matteson}
+
+\begin{document}
+\maketitle
+
+Thank you for the very careful reading of our manuscript, and for your helpful comments. 
+Below you will find our responses to the report and the changes we made. Your comments are included in italics.
+
+
+%\section*{General changes}
+
+
+\section*{Response to Referee}
+
+\textit{This manuscript follows the work of Flury and others in estimation and testing of common eigenvalues. However, this manuscript considerably generalizes classical treatments of this problem.  On the positive side, the manuscript includes: a diagonalization estimation procedure, a testing procedure for common a partially common diagonalization, a simulation study and a data application.}
+\vspace{0.2cm}\\
+\textbf{General comment:}
+In response to the reviewer's comments, we added Appendix A: ``Complementary simulation results". We included the following subsections 
+\begin{itemize}
+    \item A.1 Empirical type I and II errors,
+    \item A.2 Sequential application of partial tests,
+    \item A.3 High-dimensional data.
+\end{itemize}
+Appendix A entails all our responses to the reviewer's questions. We provide more details below where we reply to each individual comment. Note also that we attached Appendix A to our responds file right after our individual responses. We refer to Appendix A at several points in the main paper.
+
+\begin{enumerate}
+
+\item
+\textit{Many modern problems of this sort have large d (in your notation) and small n. Can you comment on estimation / testing issues in this case or for cases where the asymptotic assumptions are suspect? Also, it might be worth varying d in the simulation studies.}
+
+\textbf{Response:}
+Appendix A.3: ``High-dimensional data" provides a discussion on whether our methods are applicable for possibly high-dimensional data. In particular, we added Table 5 to illustrate for different but fixed sample sizes how the empirical size increases with the dimension. The illustration is based on the commutator based test but similar results are expected for all proposed test statistics.
+
+In the main paper, we extended our conclusions (\autoref{sec:con}) to refer to the discussion in the supplementary material:
+
+``In this work, we considered the classical ``fixed $d$, large $n$” regime. However, many contemporary data go beyond the low dimensional setting and require the dimension $d$ to be of the same order as, or possibly even larger than, the sample size $n$.
+While the high-dimensional setting goes beyond the scope of this work, we added a discussion and simulation study in \autoref{se:compl3} of the supplementary material to emphasize that the methodology in this paper is not sufficient to do testing on high-dimensional data."
+
+\item
+\textit{On the simulation studies. In the appendix could formal type I, II tables for standard cutoffs be created. I understand this information is given in the manuscript. However, I think it would be useful (readable) in this restricted form.}
+
+\textbf{Response:}
+We provide tables with the type I and II errors for all proposed tests. The results are collected in Tables 1,2 and 3.
+
+We added the following sentence to the first paragraph in \autoref{sec:simu} in the main paper to refer to the additional simulation results:
+
+``Complementary to the plots presented in this section, we refer the reader to \autoref{se:compl1} in the supplementary material for tables providing type I and II errors for all our simulation studies."
+
+\item
+\textit{Am I missing how the number of partial components is selected in the partial test? Is k assumed known? If I'm not mistaken, then can the simulation studies reflect the consequence of misspecifying k?}
+
+\textbf{Response:}
+The number of partial components is assumed to be known. However, one can apply our partial test sequentially. In a numerical study stated in Table 4, we illustrate that the method works well.
+
+We added the following paragraph at the end of \autoref{subse:partialtest} in the main paper to refer to the additional results:
+
+``As pointed out in \autoref{sec:part}, we assume that the number of partial common eigenvectors in known. Since this assumption is not feasible in practice, we propose a sequential testing procedure. We refer to \autoref{se:compl2} in the supplementary material for a detailed description of the testing procedure and a corresponding simulation study to access its performance."
+
+
+\item
+\textit{Can some discussion be added on testing diagonality versus partial diagonality in practice? For example, how do the two tests relate when applied to the same dataset? Can you give guidance as to some sort of procedure, such as testing partial commonality then commonality?  Can you discuss the mathematical relationships (if test A rejects then test B rejects ...)?}
+
+\textbf{Response:} 
+Our proposed testing statistics guarantees that, if the number of common components equals the full rank, the partial test from Section 5 is equivalent to the multi-sample test from Section 4. Please, see our response to your previous comment that addresses the remaining concerns.
+
+\item
+\textit{Finally, can some discussion of how results change if the joint diagonalization estimation changes (since minimizing the sum of the off diagonal squares is just one of a few methods)?}
+
+\textbf{Response:}
+Our test design for the multi-sample test, especially the one in Corollary 4.1, is developed based on the squared off-diagonal norms, hence the objective function for optimization does matter to some extent. However, referring to \cite{andre} and references therein, most of the existing joint diagonalization algorithms settle the cost functions, at least intermediately, to the similar formats despite their different novelties on estimation routines. Such formulation of minimizing the squared off-diagonal norms is usually preferred due to its outstanding computational efficiency as addressed earlier by \cite{Ziehe}, while the potential weakness on trivial convergence (concerning orthogonal eigenvector matrix under symmetric cases) mentioned there is automatically mitigated under asymmetric setup due to invertibility.
+
+\end{enumerate}
+
+
+\section*{Additional changes}
+Due to some new developments in the literature, we decided to update the algorithm to estimate the joint eigenvectors in the multi sample setting. To be more precise, we updated `\textit{JDTE}' to `\textit{(W)JDTE}' according to \cite{andre} with the additional line search step for a weighted update per iteration to improve convergence performance.
+
+These changes effect mostly our simulation results for Propositions 4.1 and 5.1. The improved algorithm let to a test size close to the nominal test level and a test power which is now similar to those of Corollary 4.2 and 5.2.
+
+
+
+\section*{Appendix A}
+\appendix
+For completeness of our responds, we added Appendix A. It includes all the changes we made in responds to your report. In particular, it presents the additional simulation results.
+
+\section{Complementary simulation results} \label{se:compl}
+We provide here some empirical results complementary to the numerical analysis presented in the main paper. \autoref{se:compl1} gives empirical sizes and powers for the proposed test, 
+\autoref{se:compl2} studies sequential application of our partial tests and \autoref{se:compl3} discusses application to possibly high-dimensional data.
+
+\subsection{Empirical type I and II errors} \label{se:compl1}
+In addition to the p-values in the main paper, we provide here tables with type I and II errors for our tests to assess their performances. \Cref{ta:errorsTwosample,,ta:errorsMultisample,,ta:errorsPartial} show respectively the errors for the two-sample, multi-sample and partial tests.
+
+\begin{table}[htbp] 
+\centering
+\begin{tabular}{|c|c|c|c|cc|}
+\hline
+\multirow{2}{*}{Test Type} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Statistics\\ Type\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Sample\\ Size\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Type I\\ Error\end{tabular}} & \multicolumn{2}{c|}{Type II Error} \\ \cline{5-6} 
+ &  &  &  & \multicolumn{1}{c|}{SNR=1000} & SNR=10 \\ \hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Commutator-based\\ test\end{tabular}} & \multirow{3}{*}{Chi-test} & 50 & 0.218 & \multicolumn{1}{c|}{0.216} & 0.000 \\ \cline{3-6} 
+ &  & 250 & 0.056 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{3-6} 
+ &  & 1000 & 0.054 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \hline
+\multirow{12}{*}{\begin{tabular}[c]{@{}c@{}}LLR test\\ ({\color{cyan}Appendix B})\end{tabular}} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Oracle Chi-Test\\ with ({\color{cyan}B.5})\end{tabular}} & 50 & 0.182 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{3-6} 
+ &  & 250 & 0.140 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{3-6} 
+ &  & 1000 & 0.060 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Plugin Chi-test\\with ({\color{cyan}B.5})\end{tabular}} & 50 & 1.000 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{3-6} 
+ &  & 250 & 1.000 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{3-6} 
+ &  & 1000 & 1.000 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Oracle Chi-Test\\with ({\color{cyan}B.6})\end{tabular}} & 50 & 0.182 & \multicolumn{1}{c|}{0.058} & 0.000 \\ \cline{3-6} 
+ &  & 250 & 0.140 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{3-6} 
+ &  & 1000 & 0.060 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Plugin Chi-test\\with ({\color{cyan}B.6})\end{tabular}} & 50 & 0.760 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{3-6} 
+ &  & 250 & 0.842 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{3-6} 
+ &  & 1000 & 0.774 & \multicolumn{1}{c|}{0.000} & 0.000 \\ \hline
+\end{tabular}
+\caption{Two-sample test results on simulated $\mathcal{M}_2(\rho, 5; 5)$ for $\rho^2 = \frac{1}{\SNR} \in \{ 0, \frac{1}{1000}, \frac{1}{10} \}$.} \label{ta:errorsTwosample}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|ccc|}
+\hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Statistics\\ Type\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Sample\\ Size\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Type I\\ Error\end{tabular}} & \multicolumn{3}{c|}{Type II Error} \\ \cline{4-6} 
+ &  &  & \multicolumn{1}{c|}{$\SNR=1000$} & \multicolumn{1}{c|}{$\SNR=100$} & $\SNR=10$ \\ \hline
+\multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Oracle\\ Chi-test\\(\autoref{thm:multi_eig})\end{tabular}} & 100 & 0.230 & \multicolumn{1}{c|}{NA} & \multicolumn{1}{c|}{NA} & NA \\ \cline{2-6} 
+ & 1000 & 0.060 & \multicolumn{1}{c|}{NA} & \multicolumn{1}{c|}{NA} & NA \\ \cline{2-6} 
+ & 10000 & 0.045 & \multicolumn{1}{c|}{NA} & \multicolumn{1}{c|}{NA} & NA \\ \cline{2-6} 
+ & 100000 & 0.070 & \multicolumn{1}{c|}{NA} & \multicolumn{1}{c|}{NA} & NA \\ \hline
+\multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Plugin\\ Chi-test\\(\autoref{thm:multi_eig.Est})\end{tabular}} & 100 & 0.175 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 1000 & 0.095 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 10000 & 0.090 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 100000 & 0.075 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \hline
+\multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Plugin\\ Gamma-test\\(\autoref{cor:multi})\end{tabular}} & 100 & 0.015 & \multicolumn{1}{c|}{0.005} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 1000 & 0.025 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 10000 & 0.005 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 100000 & 0.015 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \hline
+\end{tabular}
+\caption{Multi-sample test results on simulated $\mathcal{M}_8(\rho, 4; 4)$ for $\rho^2 = \frac{1}{\SNR} \in \{ 0, \frac{1}{1000}, \frac{1}{100}\, \frac{1}{10} \}$.} \label{ta:errorsMultisample}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|ccc|}
+\hline
+\multirow{2}{*}{Statistics Type} & \multirow{2}{*}{Sample Size} & \multirow{2}{*}{Type I Error} & \multicolumn{3}{c|}{Type II Error} \\ \cline{4-6} 
+ &  &  & \multicolumn{1}{c|}{$\SNR=1000$} & \multicolumn{1}{c|}{$\SNR=100$} & $\SNR=10$ \\ \hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Chi-test\\(\autoref{thm:part.Est})\end{tabular}} & 100 & 0.020 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 1000 & 0.020 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 10000 & 0.025 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Gamma-test\\(\autoref{cor:partial})\end{tabular}} & 100 & 0.010 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 1000 & 0.015 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \cline{2-6} 
+ & 10000 & 0.015 & \multicolumn{1}{c|}{0.000} & \multicolumn{1}{c|}{0.000} & 0.000 \\ \hline
+\end{tabular}
+\caption{Partial test results on simulated $\mathcal{M}_8(\rho, 2; 4)$ for $\rho = \frac{1}{\SNR} \in \{ 0, \frac{1}{1000}, \frac{1}{100}\, \frac{1}{10} \}$.} \label{ta:errorsPartial}
+\end{table}
+
+\subsection{Sequential application of partial tests} \label{se:compl2}
+As pointed out in \autoref{sec:part}, we assume that the number of partial common eigenvectors in known. Since this assumption is not feasible in practice, we propose a sequential testing procedure. The hypothesis testing problem \eqref{hyp:part} can be stated for $k \in \{1,\dots,d\}$. The sequential testing starts with $k = d$, then $k = d-1$ and so on, till the null hypothesis is not rejected.
+The performance of this procedure is accessed through a simulation study in \autoref{ta:sequential}. 
+
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|ccc|}
+\hline
+\multirow{2}{*}{Statistics Type} & \multirow{2}{*}{Sample Size} & \multicolumn{3}{c|}{Rejection Rate} \\ \cline{3-5} 
+ &  & \multicolumn{1}{c|}{$k=2$} & \multicolumn{1}{c|}{$k=3$} & $k=4$ \\ \hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Chi-test\\(\autoref{thm:part.Est})\end{tabular}} & 100 & \multicolumn{1}{c|}{0.020} & \multicolumn{1}{c|}{1.000} & 1.000 \\ \cline{2-5} 
+ & 1000 & \multicolumn{1}{c|}{0.020} & \multicolumn{1}{c|}{1.000} & 1.000 \\ \cline{2-5} 
+ & 10000 & \multicolumn{1}{c|}{0.025} & \multicolumn{1}{c|}{1.000} & 1.000 \\ \hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Gamma-test\\(\autoref{cor:partial})\end{tabular}} & 100 & \multicolumn{1}{c|}{0.010} & \multicolumn{1}{c|}{1.000} & 1.000 \\ \cline{2-5} 
+ & 1000 & \multicolumn{1}{c|}{0.015} & \multicolumn{1}{c|}{1.000} & 1.000 \\ \cline{2-5} 
+ & 10000 & \multicolumn{1}{c|}{0.015} & \multicolumn{1}{c|}{1.000} & 1.000 \\ \hline
+\end{tabular}
+\caption{Partial test results on simulated $\mathcal{M}_8(0, 2; 4)$ and potentially mis-specified $k \in \{2,3,4\}$.} \label{ta:sequential}
+\end{table}
+
+\subsection{High-dimensional data} \label{se:compl3}
+
+In this work, we consider the classical ``fixed $d$, large $n$” regime. However, many contemporary data go beyond the low dimensional setting and require the dimension $d$ to be of the same order as, or possibly even larger than, the sample size $n$.
+While the high-dimensional setting goes beyond the scope of this work, we would like to point out why our methodology is not sufficient to do testing on high-dimensional data.
+
+\autoref{ta:differentdimensions} presents the empirical rejection rates and average degrees of freedom for the two-sample test in \autoref{thm:comm}, considering different sample sizes $n=50, 100, 500$ and letting $d$ grow. We present results assuming that the limiting covariance matrix in \autoref{eq:comm.asym} is estimated and known. The existence of a consistent estimator is stated in \autoref{ass:covConsistent} and makes our procedure feasible in practice.
+
+The results in \autoref{ta:differentdimensions} show that the classical theory suffers a $\alpha$ test size much higher than the nominal test level once we consider high-dimensional data and estimate the limiting covariance matrix. Intuitively, the results are expected to break down once the sample size does not satisfy $n > r_{1}(d^2 + d^2)$. This can be easily seen by counting the degrees of freedom required to specify a rank-$r_{1}$ matrix of size $d^2 \times d^2$. Roughly speaking, we need $r_{1}$ numbers to specify the matrix's singular values, and $r_{1}d^2$ and $r_{1}d^2$ numbers to specify its left and right singular vectors.
+
+The $\alpha$ test size much higher than the nominal test level is also due to \autoref{ass:covConsistent} no longer being satisfied in a high-dimensional regime. In particular, the difference between estimator and true matrix is incorrectly normalized once the dimension grows with the sample size. It is expected to require results from random matrix theory to get convergence under suitable assumptions on the ratio between $d$ and $n$. 
+
+
+\begin{sidewaystable}[htbp]
+\centering
+  \small
+\begin{tabular}{|c|cccc|cccc|cccc|}
+\hline
+\multirow{3}{*}{$d$} & \multicolumn{4}{c|}{Sample Size=50} & \multicolumn{4}{c|}{Sample Size=100} & \multicolumn{4}{c|}{Sample Size = 500} \\ \cline{2-13} 
+ & \multicolumn{2}{c|}{Empirical Cov} & \multicolumn{2}{c|}{True Cov} & \multicolumn{2}{c|}{Empirical Cov} & \multicolumn{2}{c|}{True Cov} & \multicolumn{2}{c|}{Empirical Cov} & \multicolumn{2}{c|}{True Cov} \\ \cline{2-13} 
+ & \multicolumn{1}{c|}{Size} & \multicolumn{1}{c|}{Avg DF} & \multicolumn{1}{c|}{Size} & Avg DF & \multicolumn{1}{c|}{Size} & \multicolumn{1}{c|}{Avg DF} & \multicolumn{1}{c|}{Size} & Avg DF & \multicolumn{1}{c|}{Size} & \multicolumn{1}{c|}{Avg DF} & \multicolumn{1}{c|}{Size} & Avg DF \\ \hline
+2 & \multicolumn{1}{c|}{0.036} & \multicolumn{1}{c|}{2.05} & \multicolumn{1}{c|}{0.022} & 2.04 & \multicolumn{1}{c|}{0.054} & \multicolumn{1}{c|}{2.00} & \multicolumn{1}{c|}{0.058} & 2.00 & \multicolumn{1}{c|}{0.044} & \multicolumn{1}{c|}{2.00} & \multicolumn{1}{c|}{0.044} & 2.00 \\ \hline
+3 & \multicolumn{1}{c|}{0.066} & \multicolumn{1}{c|}{6.10} & \multicolumn{1}{c|}{0.034} & 6.13 & \multicolumn{1}{c|}{0.074} & \multicolumn{1}{c|}{6.02} & \multicolumn{1}{c|}{0.054} & 6.02 & \multicolumn{1}{c|}{0.062} & \multicolumn{1}{c|}{6.00} & \multicolumn{1}{c|}{0.060} & 6.00 \\ \hline
+4 & \multicolumn{1}{c|}{0.088} & \multicolumn{1}{c|}{12.33} & \multicolumn{1}{c|}{0.014} & 12.38 & \multicolumn{1}{c|}{0.092} & \multicolumn{1}{c|}{12.06} & \multicolumn{1}{c|}{0.036} & 12.06 & \multicolumn{1}{c|}{0.066} & \multicolumn{1}{c|}{12.00} & \multicolumn{1}{c|}{0.054} & 12.00 \\ \hline
+5 & \multicolumn{1}{c|}{0.186} & \multicolumn{1}{c|}{20.15} & \multicolumn{1}{c|}{0.018} & 20.42 & \multicolumn{1}{c|}{0.116} & \multicolumn{1}{c|}{20.05} & \multicolumn{1}{c|}{0.050} & 20.08 & \multicolumn{1}{c|}{0.062} & \multicolumn{1}{c|}{20.00} & \multicolumn{1}{c|}{0.056} & 20.00 \\ \hline
+6 & \multicolumn{1}{c|}{0.358} & \multicolumn{1}{c|}{29.75} & \multicolumn{1}{c|}{0.020} & 30.65 & \multicolumn{1}{c|}{0.176} & \multicolumn{1}{c|}{29.97} & \multicolumn{1}{c|}{0.020} & 30.09 & \multicolumn{1}{c|}{0.058} & \multicolumn{1}{c|}{30.00} & \multicolumn{1}{c|}{0.046} & 30.00 \\ \hline
+7 & \multicolumn{1}{c|}{0.698} & \multicolumn{1}{c|}{40.85} & \multicolumn{1}{c|}{0.018} & 42.79 & \multicolumn{1}{c|}{0.310} & \multicolumn{1}{c|}{40.46} & \multicolumn{1}{c|}{0.026} & 40.97 & \multicolumn{1}{c|}{0.092} & \multicolumn{1}{c|}{40.00} & \multicolumn{1}{c|}{0.050} & 40.00 \\ \hline
+8 & \multicolumn{1}{c|}{0.960} & \multicolumn{1}{c|}{55.82} & \multicolumn{1}{c|}{0.024} & 57.78 & \multicolumn{1}{c|}{0.548} & \multicolumn{1}{c|}{56.04} & \multicolumn{1}{c|}{0.034} & 56.30 & \multicolumn{1}{c|}{0.092} & \multicolumn{1}{c|}{56.00} & \multicolumn{1}{c|}{0.044} & 56.00 \\ \hline
+9 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{69.11} & \multicolumn{1}{c|}{0.014} & 74.19 & \multicolumn{1}{c|}{0.778} & \multicolumn{1}{c|}{70.54} & \multicolumn{1}{c|}{0.044} & 71.97 & \multicolumn{1}{c|}{0.098} & \multicolumn{1}{c|}{70.44} & \multicolumn{1}{c|}{0.052} & 70.57 \\ \hline
+10 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{86.27} & \multicolumn{1}{c|}{0.020} & 92.94 & \multicolumn{1}{c|}{0.962} & \multicolumn{1}{c|}{89.62} & \multicolumn{1}{c|}{0.034} & 90.74 & \multicolumn{1}{c|}{0.162} & \multicolumn{1}{c|}{90.00} & \multicolumn{1}{c|}{0.054} & 90.00 \\ \hline
+11 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{96.93} & \multicolumn{1}{c|}{0.024} & 114.55 & \multicolumn{1}{c|}{0.996} & \multicolumn{1}{c|}{108.25} & \multicolumn{1}{c|}{0.030} & 111.15 & \multicolumn{1}{c|}{0.238} & \multicolumn{1}{c|}{108.79} & \multicolumn{1}{c|}{0.050} & 109.15 \\ \hline
+12 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.030} & 136.88 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{131.96} & \multicolumn{1}{c|}{0.042} & 133.48 & \multicolumn{1}{c|}{0.340} & \multicolumn{1}{c|}{132.00} & \multicolumn{1}{c|}{0.056} & 132.00 \\ \hline
+13 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.022} & 161.63 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{153.87} & \multicolumn{1}{c|}{0.030} & 157.93 & \multicolumn{1}{c|}{0.468} & \multicolumn{1}{c|}{156.00} & \multicolumn{1}{c|}{0.044} & 156.00 \\ \hline
+14 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.028} & 188.91 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{174.85} & \multicolumn{1}{c|}{0.026} & 184.56 & \multicolumn{1}{c|}{0.622} & \multicolumn{1}{c|}{182.00} & \multicolumn{1}{c|}{0.044} & 182.00 \\ \hline
+15 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.040} & 217.63 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{193.89} & \multicolumn{1}{c|}{0.042} & 212.96 & \multicolumn{1}{c|}{0.774} & \multicolumn{1}{c|}{209.88} & \multicolumn{1}{c|}{0.052} & 209.99 \\ \hline
+16 & \multicolumn{1}{c|}{0.998} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.042} & 248.27 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.034} & 243.25 & \multicolumn{1}{c|}{0.874} & \multicolumn{1}{c|}{239.89} & \multicolumn{1}{c|}{0.042} & 240.00 \\ \hline
+17 & \multicolumn{1}{c|}{0.998} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.050} & 281.03 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.042} & 275.62 & \multicolumn{1}{c|}{0.974} & \multicolumn{1}{c|}{270.00} & \multicolumn{1}{c|}{0.046} & 270.14 \\ \hline
+18 & \multicolumn{1}{c|}{0.978} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.050} & 315.85 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.036} & 310.37 & \multicolumn{1}{c|}{0.986} & \multicolumn{1}{c|}{303.18} & \multicolumn{1}{c|}{0.056} & 304.74 \\ \hline
+19 & \multicolumn{1}{c|}{0.994} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.046} & 352.90 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.050} & 347.06 & \multicolumn{1}{c|}{0.998} & \multicolumn{1}{c|}{340.60} & \multicolumn{1}{c|}{0.044} & 341.50 \\ \hline
+20 & \multicolumn{1}{c|}{0.994} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.056} & 391.32 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.046} & 384.37 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{373.18} & \multicolumn{1}{c|}{0.044} & 375.67 \\ \hline
+21 & \multicolumn{1}{c|}{0.460} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.054} & 433.27 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.040} & 426.84 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{418.44} & \multicolumn{1}{c|}{0.044} & 419.91 \\ \hline
+22 & \multicolumn{1}{c|}{0.982} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.044} & 475.39 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.040} & 468.52 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{455.78} & \multicolumn{1}{c|}{0.054} & 459.21 \\ \hline
+23 & \multicolumn{1}{c|}{0.986} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.044} & 520.58 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.054} & 513.53 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{499.67} & \multicolumn{1}{c|}{0.042} & 503.17 \\ \hline
+24 & \multicolumn{1}{c|}{0.284} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.032} & 567.74 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.030} & 560.31 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{544.63} & \multicolumn{1}{c|}{0.040} & 551.13 \\ \hline
+25 & \multicolumn{1}{c|}{0.702} & \multicolumn{1}{c|}{98.00} & \multicolumn{1}{c|}{0.056} & 617.31 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{198.00} & \multicolumn{1}{c|}{0.046} & 609.14 & \multicolumn{1}{c|}{1.000} & \multicolumn{1}{c|}{590.03} & \multicolumn{1}{c|}{0.054} & 595.95 \\ \hline
+\end{tabular}
+\caption{Two-sample test results on simulated $\mathcal{M}_2(0, d; d)$ for dimensions $d \in \{ 2, \dots, 25 \}$.} \label{ta:differentdimensions}
+\label{ta:highd}
+\end{sidewaystable}
+
+
+\bigskip
+\bigskip
+\noindent
+Thanks again for all your suggestions and your careful reading of our manuscript.
+
+
+\small
+%\bibliographystyle{Chicago}
+\bibliographystyle{plainnat}
+% \bibliographystyle{plain}
+\bibliography{../main}
+
+% \section*{References}
+% \begingroup
+% \renewcommand{\section}[2]{}%
+% \begin{thebibliography}{99}
+
+% %just noticed a new version of the paper for (W)JDTE algorithm:
+% \bibitem{andre2020joint}
+% André, Rémi, Xavier Luciani, and Eric Moreau. "Joint EigenValue decomposition algorithms based on first-order Taylor expansion." IEEE Transactions on Signal Processing 68 (2020): 1716-1727.
+
+% \bibitem{ziehe2004fast}
+% Ziehe, Andreas, Pavel Laskov, Guido Nolte and Klaus-Robert Müller. “A Fast Algorithm for Joint Diagonalization with Non-orthogonal Transformations and its Application to Blind Source Separation.” J. Mach. Learn. Res. 5 (2004): 777-800.
+% %\bibitem{Ptscher1983OrderEI}
+% %B. M. P{\"o}tscher,
+% %Order Estimation in {ARMA}-Models by {L}agrangian Multiplier Tests.
+% %\textit{Annals of Statistics}, 11 (1983), no. 3, 872--885. 
+
+% \end{thebibliography}
+% \endgroup
+
+\end{document}
+
+
+

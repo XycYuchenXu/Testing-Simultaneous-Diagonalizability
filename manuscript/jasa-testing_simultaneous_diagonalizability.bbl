@@ -1,0 +1,316 @@
+\begin{thebibliography}{49}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Andr{\'e} et~al.(2020)Andr{\'e}, Luciani, and Moreau]{andre}
+Andr{\'e}, R., Luciani, X., and Moreau, E.
+\newblock Joint eigenvalue decomposition algorithms based on first-order
+  {T}aylor expansion.
+\newblock \emph{IEEE Transactions on Signal Processing}, 68:\penalty0
+  1716--1727, 2020.
+\newblock \doi{10.1109/TSP.2020.2976580}.
+
+\bibitem[Barsotti et~al.(2014)Barsotti, De~Castro, Espinasse, and
+  Rochet]{barsotti}
+Barsotti, F., De~Castro, Y., Espinasse, T., and Rochet, P.
+\newblock Estimating the transition matrix of a {M}arkov chain observed at
+  random times.
+\newblock \emph{Statistics \& Probability Letters}, 94:\penalty0 98--105, 2014.
+
+\bibitem[Bodenham and Adams(2016)]{bodenham2016comparison}
+Bodenham, D.~A. and Adams, N.~M.
+\newblock A comparison of efficient approximations for a weighted sum of
+  chi-squared random variables.
+\newblock \emph{Statistics and Computing}, 26\penalty0 (4):\penalty0 917--928,
+  2016.
+
+\bibitem[Box(1954)]{box1954}
+Box, G. E.~P.
+\newblock Some theorems on quadratic forms applied in the study of analysis of
+  variance problems, {I}. {E}ffect of inequality of variance in the one-way
+  classification.
+\newblock \emph{The Annals of Mathematical Statistics}, 25\penalty0
+  (2):\penalty0 290--302, 1954.
+
+\bibitem[Cai et~al.(2013)Cai, Ma, and Wu]{cai2013sparse}
+Cai, T.~T., Ma, Z., and Wu, Y.
+\newblock Sparse {PCA}: Optimal rates and adaptive estimation.
+\newblock \emph{The Annals of Statistics}, 41\penalty0 (6):\penalty0
+  3074--3110, 2013.
+
+\bibitem[CEIC(1992)]{ceic}
+CEIC.
+\newblock Global database, 1992.
+\newblock URL
+  \url{https://www.ceicdata.com/en/products/global-economic-database}[Accessed:
+  Nov. 2020].
+
+\bibitem[Colombo and Vlassis(2016{\natexlab{a}})]{colombo}
+Colombo, N. and Vlassis, N.
+\newblock Approximate joint matrix triangularization.
+\newblock \emph{arXiv preprint arXiv:1607.00514}, 2016{\natexlab{a}}.
+
+\bibitem[Colombo and Vlassis(2016{\natexlab{b}})]{tensor}
+Colombo, N. and Vlassis, N.
+\newblock Tensor decomposition via joint matrix {S}chur decomposition.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  2820--2828, 2016{\natexlab{b}}.
+
+\bibitem[Donald et~al.(2007)Donald, Fortuna, and Pipiras]{donald:2007rank}
+Donald, S.~G., Fortuna, N., and Pipiras, V.
+\newblock On rank estimation in symmetric matrices: the case of indefinite
+  matrix estimators.
+\newblock \emph{Econometric Theory}, 23\penalty0 (6):\penalty0 1217--1232,
+  2007.
+
+\bibitem[Engle and Granger(1987)]{Engle1987:Co}
+Engle, R. and Granger, C.
+\newblock Co-integration and error correction: Representation, estimation, and
+  testing.
+\newblock \emph{Econometrica}, 55\penalty0 (2):\penalty0 251--76, 1987.
+
+\bibitem[Fan et~al.(2013)Fan, Liao, and Mincheva]{fan2013large}
+Fan, J., Liao, Y., and Mincheva, M.
+\newblock Large covariance estimation by thresholding principal orthogonal
+  complements.
+\newblock \emph{Journal of the Royal Statistical Society. Series B, Statistical
+  methodology}, 75\penalty0 (4), 2013.
+
+\bibitem[Fan et~al.(2015)Fan, Rigollet, and Wang]{fan2015estimation}
+Fan, J., Rigollet, P., and Wang, W.
+\newblock Estimation of functionals of sparse covariance matrices.
+\newblock \emph{The Annals of Statistics}, 43\penalty0 (6):\penalty0 2706,
+  2015.
+
+\bibitem[Fan et~al.(2018)Fan, Wang, and Zhong]{fan2018eigenvector}
+Fan, J., Wang, W., and Zhong, Y.
+\newblock An $\ell_{\infty}$ eigenvector perturbation bound and its application
+  to robust covariance estimation.
+\newblock \emph{Journal of Machine Learning Research}, 18\penalty0
+  (207):\penalty0 1--42, 2018.
+
+\bibitem[Flury(1986)]{FluryAsymptotic}
+Flury, B.~N.
+\newblock Asymptotic theory for common principal component analysis.
+\newblock \emph{The Annals of Statistics}, 14\penalty0 (2):\penalty0 418--430,
+  1986.
+
+\bibitem[Flury(1984)]{Flury84}
+Flury, B.~N.
+\newblock Common principal components in $k$ groups.
+\newblock \emph{Publications of the American Statistical Association},
+  79\penalty0 (388):\penalty0 892--898, 1984.
+
+\bibitem[Flury and Gautschi(1986)]{Flury86}
+Flury, B.~N. and Gautschi, W.
+\newblock An algorithm for simultaneous orthogonal transformation of several
+  positive definite symmetric matrices to nearly diagonal form.
+\newblock \emph{Siam Journal on Scientific \& Statistical Computing},
+  7\penalty0 (1):\penalty0 169--184, 1986.
+
+\bibitem[Fu and Gao(2006)]{shrt}
+Fu, T. and Gao, X.
+\newblock Simultaneous diagonalization with similarity transformation for
+  non-defective matrices.
+\newblock In \emph{2006 IEEE International Conference on Acoustics Speech and
+  Signal Processing Proceedings}, volume~4, pages IV--IV. IEEE, 2006.
+
+\bibitem[Fujioka(1993)]{Fuji}
+Fujioka, T.
+\newblock An approximate test for common principal component subspaces in two
+  groups.
+\newblock \emph{The Annals of the Institute of Statistical Mathematics},
+  45\penalty0 (1):\penalty0 147--158, 1993.
+
+\bibitem[Ghazi et~al.(2008)Ghazi, Hajji, Giraud, and Gratton]{Ghazi}
+Ghazi, A.~E., Hajji, S.~E., Giraud, L., and Gratton, S.
+\newblock Newton's method for the common eigenvector problem.
+\newblock \emph{Journal of Computational \& Applied Mathematics}, 219\penalty0
+  (2):\penalty0 398--407, 2008.
+
+\bibitem[Ghazi et~al.(2014)Ghazi, Hajji, Giraud, and Gratton]{Gira}
+Ghazi, A.~E., Hajji, S.~E., Giraud, L., and Gratton, S.
+\newblock A short note on backward errors for the common eigenvector problem,
+  2014.
+
+\bibitem[Hadi and Wells(1990)]{hadi1990note}
+Hadi, A. and Wells, M.
+\newblock A note on generalized {W}ald’s method.
+\newblock \emph{Metrika}, 37\penalty0 (1):\penalty0 309--315, 1990.
+
+\bibitem[Horn and Johnson(2012)]{Horn}
+Horn, R.~A. and Johnson, C.~R.
+\newblock \emph{Matrix analysis}.
+\newblock Cambridge University Press, 2012.
+
+\bibitem[Iferroudjene et~al.(2009)Iferroudjene, Abed~Meraim, and
+  Belouchrani]{just}
+Iferroudjene, R., Abed~Meraim, K., and Belouchrani, A.
+\newblock A new {J}acobi-like method for joint diagonalization of arbitrary
+  non-defective matrices.
+\newblock \emph{Applied Mathematics and Computation}, 211\penalty0
+  (2):\penalty0 363--373, 2009.
+
+\bibitem[Johansen(1991)]{johansen91:Est}
+Johansen, S.
+\newblock Estimation and hypothesis testing of cointegration vectors in
+  {G}aussian vector autoregressive models.
+\newblock \emph{Econometrica}, 59\penalty0 (6):\penalty0 1551--1580, 1991.
+
+\bibitem[Kleibergen and Paap(2006)]{Kleibergen2006:Generalized}
+Kleibergen, F. and Paap, R.
+\newblock Generalized reduced rank tests using the singular value
+  decomposition.
+\newblock \emph{Journal of Econometrics}, 133\penalty0 (1):\penalty0 97--126,
+  2006.
+
+\bibitem[Koltchinskii and Lounici(2017)]{koltchinskii2017new}
+Koltchinskii, V. and Lounici, K.
+\newblock New asymptotic results in principal component analysis.
+\newblock \emph{Sankhya A}, 79\penalty0 (2):\penalty0 254--297, 2017.
+
+\bibitem[Lei and Rinaldo(2015)]{lei2015}
+Lei, J. and Rinaldo, A.
+\newblock Consistency of spectral clustering in stochastic block models.
+\newblock \emph{The Annals of Statistics}, 43\penalty0 (1):\penalty0 215--237,
+  2015.
+
+\bibitem[Luciani and Albera(2010)]{jdtm}
+Luciani, X. and Albera, L.
+\newblock Joint eigenvalue decomposition using polar matrix factorization.
+\newblock In \emph{Latent Variable Analysis and Signal Separation}, pages
+  555--562. Springer Berlin Heidelberg, 2010.
+\newblock ISBN 978-3-642-15995-4.
+
+\bibitem[L\"utkepohl(2005)]{Lutkepol2005}
+L\"utkepohl, H.
+\newblock \emph{New introduction to multiple time series analysis}.
+\newblock Springer, Berlin, 2005.
+
+\bibitem[L{\"u}tkepohl and Burda(1997)]{lutkepohl1997modified}
+L{\"u}tkepohl, H. and Burda, M.~M.
+\newblock Modified {W}ald tests under nonregular conditions.
+\newblock \emph{Journal of Econometrics}, 78\penalty0 (2):\penalty0 315--332,
+  1997.
+
+\bibitem[Magnus and Neudecker(2019)]{magnus2019matrix}
+Magnus, J.~R. and Neudecker, H.
+\newblock \emph{Matrix differential calculus with applications in statistics
+  and econometrics}.
+\newblock John Wiley \& Sons, 2019.
+
+\bibitem[Nadler(2008)]{nadler2008finite}
+Nadler, B.
+\newblock Finite sample approximation results for principal component analysis:
+  A matrix perturbation approach.
+\newblock \emph{The Annals of Statistics}, 36\penalty0 (6):\penalty0
+  2791--2817, 2008.
+
+\bibitem[Naumov et~al.(2019)Naumov, Spokoiny, and Ulyanov]{naumov2019bootstrap}
+Naumov, A., Spokoiny, V., and Ulyanov, V.
+\newblock Bootstrap confidence sets for spectral projectors of sample
+  covariance.
+\newblock \emph{Probability Theory and Related Fields}, 174\penalty0
+  (3-4):\penalty0 1091--1132, 2019.
+
+\bibitem[OECD(2015)]{oecd}
+OECD.
+\newblock Main economic indicators - complete database, 2015.
+\newblock URL
+  \url{https://www.oecd-ilibrary.org/content/data/data-00052-en}[Accessed: Nov.
+  2020].
+
+\bibitem[Paul and Chen(2020)]{paul2020spectral}
+Paul, S. and Chen, Y.
+\newblock Spectral and matrix factorization methods for consistent community
+  detection in multi-layer networks.
+\newblock \emph{The Annals of Statistics}, 48\penalty0 (1):\penalty0 230--250,
+  2020.
+
+\bibitem[Ratsimalahelo(2001)]{ratsimalahelo2001rank}
+Ratsimalahelo, Z.
+\newblock Rank test based on matrix perturbation theory.
+\newblock Technical report, EERI Research Paper Series, 2001.
+
+\bibitem[Restrepo et~al.(2007)Restrepo, Ott, and
+  Hunt]{restrepo2007approximating}
+Restrepo, J.~G., Ott, E., and Hunt, B.~R.
+\newblock Approximating the largest eigenvalue of network adjacency matrices.
+\newblock \emph{Physical Review E}, 76\penalty0 (5):\penalty0 056119, 2007.
+
+\bibitem[Robin and Smith(2000)]{robin:2000tests}
+Robin, J.-M. and Smith, R.~J.
+\newblock Tests of rank.
+\newblock \emph{Econometric Theory}, 16\penalty0 (2):\penalty0 151--175, 2000.
+
+\bibitem[Rohe et~al.(2011)Rohe, Chatterjee, and Yu]{rohe2011spectral}
+Rohe, K., Chatterjee, S., and Yu, B.
+\newblock Spectral clustering and the high-dimensional stochastic blockmodel.
+\newblock \emph{The Annals of Statistics}, 39\penalty0 (4):\penalty0
+  1878--1915, 2011.
+
+\bibitem[Schott(1999)]{schott}
+Schott, J.~R.
+\newblock Partial common principal component subspaces.
+\newblock \emph{Biometrika}, 86\penalty0 (4):\penalty0 899--908, 1999.
+
+\bibitem[Schwartzman et~al.(2008)Schwartzman, Mascarenhas, and
+  Taylor]{Schwartz}
+Schwartzman, A., Mascarenhas, W.~F., and Taylor, J.~E.
+\newblock Inference for eigenvalues and eigenvectors of {G}aussian symmetric
+  matrices.
+\newblock \emph{The Annals of Statistics}, 36\penalty0 (6):\penalty0
+  2886--2919, 2008.
+
+\bibitem[Silin and Fan(2020)]{silin2020hypothesis}
+Silin, I. and Fan, J.
+\newblock Hypothesis testing for eigenspaces of covariance matrix.
+\newblock \emph{arXiv preprint arXiv:2002.09810}, 2020.
+
+\bibitem[Silin and Spokoiny(2018)]{silin2018bayesian}
+Silin, I. and Spokoiny, V.
+\newblock Bayesian inference for spectral projectors of the covariance matrix.
+\newblock \emph{Electronic Journal of Statistics}, 12\penalty0 (1):\penalty0
+  1948--1987, 2018.
+
+\bibitem[Tang and Priebe(2018)]{tang2018}
+Tang, M. and Priebe, C.~E.
+\newblock Limit theorems for eigenvectors of the normalized {L}aplacian for
+  random graphs.
+\newblock \emph{The Annals of Statistics}, 46\penalty0 (5):\penalty0
+  2360--2415, 2018.
+
+\bibitem[Tyler(1981)]{tyler}
+Tyler, D.~E.
+\newblock Asymptotic inference for eigenvectors.
+\newblock \emph{The Annals of Statistics}, pages 725--736, 1981.
+
+\bibitem[{U.S. Geological Survey}(2016)]{usgs}
+{U.S. Geological Survey}.
+\newblock {USGS} water data for the nation.
+\newblock \emph{National Water Information System Data}, 2016.
+\newblock \doi{10.5066/F7P55KJN}.
+\newblock URL \url{https://nwis.waterdata.usgs.gov/nwis/}[Accessed: Nov. 2020].
+
+\bibitem[Vogelsang(2001)]{vogelsang2001unit}
+Vogelsang, T.~J.
+\newblock Unit roots, cointegration, and structural change.
+\newblock \emph{Journal of the American Statistical Association}, 96\penalty0
+  (453):\penalty0 346--346, 2001.
+
+\bibitem[Von~Luxburg(2007)]{von2007tutorial}
+Von~Luxburg, U.
+\newblock A tutorial on spectral clustering.
+\newblock \emph{Statistics and Computing}, 17\penalty0 (4):\penalty0 395--416,
+  2007.
+
+\bibitem[Zhang et~al.(2019)Zhang, Robinson, and Yao]{zhang2019identifying}
+Zhang, R., Robinson, P., and Yao, Q.
+\newblock Identifying cointegration by eigenanalysis.
+\newblock \emph{Journal of the American Statistical Association}, 114\penalty0
+  (526):\penalty0 916--927, 2019.
+
+\end{thebibliography}
