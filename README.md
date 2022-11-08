@@ -15,20 +15,20 @@ That package has the following functionalities:
 
 2. Given an array of square random matrices (`A`), estimate a common eigenvector matrix `V` (by supplying the array of matrices `A` for function `JDTE`).
 
-3. Test whether the array of means matrices (`A` with dimension `p`-by-`d`-by-`d` and `p` ≥ 2) for random matrices are simultaneously diagonalizable, by checking whether the eigenvector matrix estimated above (`V`) is indeed the common eigenvector matrix. Use function `eigTest` with input of two arrays (`A` and `cov.arr`) and the convergence rate `cn`.
+3. Check whether a set of matrices (by testing on the estimator array `A` with dimension `p`-by-`d`-by-`d` and `p` ≥ 2) are simultaneously diagonalizable. The test is conducted by checking whether the eigenvector matrix estimated above (`V`, the output from function `JDTE`) is indeed the common eigenvector matrix. Use function `eigTest` with input of two arrays (`A` and `cov.arr`) and the convergence rate `cn`. `V` is optional as `JDTE` will be called by default internally.
 
-4. Given an array of square random matrices (`A` with dimension `p`-by-`d`-by-`d`), estimate `k` (`k` ≤ `d`) common eigenvectors `Vk` (by supplying the array of matrices `A` and parameter `k` for function `expmPartSchur`).
+4. Given an array of square random matrices (`A` with dimension `p`-by-`d`-by-`d`), estimate `k`-dimensional (`k` ≤ `d`) common invariant sub-space `Qk` (by supplying the array of matrices `A` and parameter `k` for function `expmPartSchur`). The output `Q` from `expmPartSchur` satisfies `Q[,1:k] = Qk`.
 
-5. Test whether the array of the random estimates (`A` with dimension `p`-by-`d`-by-`d` and `p` ≥ 2) for mean matrices share `k` of the all `d` eigenvectors (`k` ≤ `d`), by checking whether the `k` estimated common eigenvectors `Vk` from optimization above are indeed the common eigenvectors. Use function `partialTest` with input of two arrays (`A` and `cov.arr`), the convergence rate `cn`, and number of common eigenvectors `k`. `Vk` is optional here as `partialTest` can call the optimization function.
+5. Check whether a set of matrices (by testing on the estimator array `A` with dimension `p`-by-`d`-by-`d` and `p` ≥ 2) share `k` of the all `d` eigenvectors (`k` ≤ `d`). The test is conducted by checking whether the estimated `k`-dimensional invariant sub-space `Qk` from `expmPartSchur` and the estimated common eigenvectors `V` for `B`, where `B[i,,] = Qk' A[i,,] Qk`, satisfy structure properties. Use function `partialTest` with input of two arrays (`A` and `cov.arr`), the convergence rate `cn`, and number of common eigenvectors `k`. `Qk` and `V` are optional as `expmPartSchur` and `JDTE` will be called by default internally.
 
-6. Generate Gaussian samples for simulations. The function `generateMeans` is used to generate `p` mean matrices with dimension `d`-by-`d` and noise levels `snr` of common eigenvector `V`. Function `simuSamples` takes the output from `generateMeans` as input for mean matrices. For each mean matrix, it generates `cn^2` Gaussian random matrices (with identity covariance matrix), and compute the sample mean and the sample covariance matrix as consistent estimators. It then combines those estimates into a list of sub-lists that include estimated mean `mu.bar` and covariance `cov.bar`.
+6. Generate Gaussian samples for simulations. The function `generateMeans` is used to generate `p` mean matrices with dimension `d`-by-`d` and noise levels `snr` on common eigenvector `V`, the output is an array of dimension `p`-by-`q`-by-`d`-by-`d` where `q = length(snr) + 1`. Function `simuSamples` takes the output from `generateMeans` as input for mean matrices. For each mean matrix, it generates `cn^2` Gaussian random matrices (with identity covariance matrix), and compute the empirical mean and empirical covariance as consistent estimators. It then combines those estimates into a list of sub-lists that include the estimated mean `mu.bar` and covariance `cov.bar`.
 
-7. For more details, read the vignette: `browseVignettes('eigTest')` and the paper 'Testing Simultaneous Diagonalizability'.
+7. For more details, please refer to the vignette: `browseVignettes('eigTest')` and the paper 'Testing Simultaneous Diagonalizability'.
 
 ## Code
 The folder `code` includes the scripts for different simulation studies and applications in the paper.
 
-In particular, the simulation studies include examples for commutator-based test, LLR test, multi-sample eigenvector test and partial test. And applications include VAR examples on macroeconomic data of 8 countries and Markovian model on Hudson river discharge data.
+In particular, the simulation studies include examples for commutator-based test, LLR test, multi-sample eigenvector test and partial test. The explorative script for two-sample tests under relatively high-dimensional settting is also provided. And applications include VAR examples on macroeconomic data of 8 countries, and Markovian model on Hudson river discharge data.
 
 ## Data
 The folder `data` includes the `R` objects of:
