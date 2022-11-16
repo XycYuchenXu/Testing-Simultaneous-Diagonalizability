@@ -40,7 +40,7 @@ The folder [`data`](data) includes the `R` objects of:
 
 The first 4 datasets are also available from the package `eigTest`.
 
-The only `csv` file [`M2_KOR_monthly_SA.csv`](data/M2_KOR_monthly_SA.csv) in the folder has the Korean money supply data, which cannot be directly readable by `R` functions from the Bank of Korea website.
+The only `csv` file [`M2_KOR_monthly_SA.csv`](data/M2_KOR_monthly_SA.csv) in the folder has the Korean money supply data, which cannot be directly read by functions in `R` from the Bank of Korea website.
 
 ## Output
 The folder [`output`](output) includes the replicates of raw p-values from simulation studies in folder [`code`](code), and the intermediate output of macroeconomic multivariate time series data collected and processed by [`VAR_application.R`](code/VAR_application.R). The sub-folder [`Plots`](output/Plots) includes generated plots from both simulations and applications in `code`, with either [`tikz`](output/Plots/tikz) or [`png`](output/Plots/png) format.
