@@ -1,9 +1,9 @@
 # Testing Simultaneous Diagonalizability
 
-This is the reproducible repository for the paper. It mainly relies on the `R` package `eigTest` developed by the authors.
+This is the reproducible repository for the paper. It mainly relies on the `R` package [`eigTest`](https://github.com/XycYuchenXu/eigTest) developed by the authors.
 
 ## Setup
-The `R` package `eigTest` is available at Github for testing simultaneous diagonalizability.
+The `R` package [`eigTest`](https://github.com/XycYuchenXu/eigTest) is available at Github for testing simultaneous diagonalizability.
 
 To install, run the following code in `R`:
 `devtools::install_github('XycYuchenXu/eigTest', force = T, build_vignettes = T)`
