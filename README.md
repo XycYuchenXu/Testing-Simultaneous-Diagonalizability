@@ -1,12 +1,12 @@
 # Testing Simultaneous Diagonalizability
 
-This is the reproducible repository for the paper. It mainly relys on the `R` package `eigTest` developed by the authors.
+This is the reproducible repository for the paper. It mainly relies on the `R` package `eigTest` developed by the authors.
 
 ## Setup
 The `R` package `eigTest` is available at Github for testing simultaneous diagonalizability.
 
 To install, run the following code in `R`:
-`devtools::install_github('XycYuchenXu/eigTest', build_vignettes = T)`
+`devtools::install_github('XycYuchenXu/eigTest', force = T, build_vignettes = T)`
 
 ## Usage
 That package has the following functionalities:
@@ -26,18 +26,21 @@ That package has the following functionalities:
 7. For more details, please refer to the vignette: `browseVignettes('eigTest')` and the paper 'Testing Simultaneous Diagonalizability'.
 
 ## Code
-The folder `code` includes the scripts for different simulation studies and applications in the paper.
+The folder [`code`](code) includes the scripts for different simulation studies and applications in the paper.
 
-In particular, the simulation studies include examples for commutator-based test, LLR test, multi-sample eigenvector test and partial test. The explorative script for two-sample tests under relatively high-dimensional settting is also provided. And applications include VAR examples on macroeconomic data of 8 countries, and Markovian model on Hudson river discharge data.
+In particular, the simulation studies include examples for commutator-based test, LLR test, multi-sample eigenvector test and partial test. The exploratory script for two-sample tests under relatively high-dimensional setting is also provided. Applications include VAR examples on macroeconomic data of 8 countries, and Markovian model on Hudson river discharge data.
 
 ## Data
-The folder `data` includes the `R` objects of:
-1. the macroeconomic time series of 8 countries `countryMacro.RData`;
-2. the array of estimated VAR coefficient matrices for 8 countries `countryCoeff.RData`;
-3. the estimated covariance of VAR coefficient matrices for 8 countries `countryCovar.RData`;
-4. the weekly streamflow discharge data of Hudson river `hudsonWeekly.RData`;
-5. the daily streamflow discharge data of Hudson river `hudsonDaily.RData`.
-These datasets are also available from the package `eigTest`.
+The folder [`data`](data) includes the `R` objects of:
+1. the array of estimated VAR coefficient matrices for 8 countries `countryCoeff.RData`;
+2. the estimated covariance of VAR coefficient matrices for 8 countries `countryCovar.RData`;
+3. the weekly streamflow discharge data of Hudson river `hudsonWeekly.RData`;
+4. the daily streamflow discharge data of Hudson river `hudsonDaily.RData`.
+5. the replicates of raw p-values from simulation studies for test power analysis and histogram visualizations.
+
+The first 4 datasets are also available from the package `eigTest`.
+
+The only `csv` file [`M2_KOR_monthly_SA.csv`](data/M2_KOR_monthly_SA.csv) in the folder has the Korean money supply data, which cannot be directly readable by `R` functions from the Bank of Korea website.
 
 ## Output
-The folder `output` includes the replicates of raw p-values from simulation studies in folder `code`. The sub-folder `Plots` includes generated plots from both simulations and applications in `code`, with either `tikz` or `png` format.
+The folder [`output`](output) includes the replicates of raw p-values from simulation studies in folder [`code`](code), and the intermediate output of macroeconomic multivariate time series data collected and processed by [`VAR_application.R`](code/VAR_application.R). The sub-folder [`Plots`](output/Plots) includes generated plots from both simulations and applications in `code`, with either [`tikz`](output/Plots/tikz) or [`png`](output/Plots/png) format.
