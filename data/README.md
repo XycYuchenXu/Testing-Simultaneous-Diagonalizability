@@ -10,4 +10,4 @@ This `data` folder includes the `R` objects of:
 9. `hudsonWeekly.RData`: the weekly streamflow discharge data of Hudson river;
 10. `hudsonDaily.RData`: the daily streamflow discharge data of Hudson river;
 
-The first 5 datasets may be considered as output of the project and hence have duplicates in the [`output`](../output) folder. The M2 data of Korea may not be directly readable by `R` from the website hence this separate `csv` table is included. The latter 4 datasets are also available from the `R` package `eigTest`.
+The first 5 datasets may be considered as output of the project and hence have duplicates in the [`output`](../output) folder. The M2 data of Korea may not be directly readable by `R` from the website hence this separate `csv` table is included. The latter 4 datasets are also available from the `R` package [`eigTest`](https://github.com/XycYuchenXu/eigTest).
