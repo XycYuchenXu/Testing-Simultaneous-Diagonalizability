@@ -12,7 +12,7 @@ devtools::install_github('XycYuchenXu/eigTest', force = T, build_vignettes = T)
 
 For some implementation examples, please refer to the vignette with `browseVignettes('eigTest')`.
 
-Some other dependencies can be installed with
+Some other dependencies for reproduction can be installed with:
 ```
 install.packages(c('devtools', 'foreach', 'doSNOW', 'tidyverse', 'tikzDevice', 'ggpattern', 'plotrix', 'reshape2', 'latex2exp', 'WDI', 'OECD', 'x12', 'pdfetch', 'jsonlite', 'MTS'))
 ```
