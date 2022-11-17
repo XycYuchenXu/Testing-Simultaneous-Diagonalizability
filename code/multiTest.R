@@ -159,4 +159,8 @@ ggsave(filename = 'output/Plots/png/PvalueMulti.png', p1, width = 7, height = 6,
 
 ###### Type I/II errors ######
 data_m %>% group_by(testType, SNR, SampleSize) %>%
-  summarise(RejRate = mean(pvalue <= 0.05)) %>% print(n = nrow(.))
+  summarise(RejRate = mean(pvalue <= 0.05)) %>%
+  mutate(testType = gsub('Chi_0', 'Chi test with $V$', testType),
+         testType = gsub('Chi', 'Chi test with $\\widehat{V}$', testType),
+         testType = gsub('Gam', 'Gamma test with $\\widehat{V}$', testType)) %>%
+  ungroup %>% print(n = nrow(.))

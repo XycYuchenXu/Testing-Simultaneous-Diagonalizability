@@ -126,5 +126,6 @@ ggsave(filename = 'output/Plots/png/PvalueCommutator.png', p1, width = 6, height
 
 ###### Type I/II errors ######
 data_c %>% group_by(SNR, SampleSize) %>%
-  summarise(RejRate = mean(pvalue <= 0.05)) %>% print(n = nrow(.))
+  summarise(RejRate = mean(pvalue <= 0.05)) %>%
+  ungroup %>% print(n = nrow(.))
 

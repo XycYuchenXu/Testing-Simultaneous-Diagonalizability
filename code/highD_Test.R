@@ -49,13 +49,16 @@ if (simu_pval) {
                        mu.bar = est_list$mu.bar; cov.bar = est_list$cov.bar
                        SNR = est_list$SNR; CovRate = est_list$CovRate
 
+                       snr = as.numeric(substring(SNR, 7))
+
                        data_temp = commutatorTest(mu.bar, cn = CovRate, param.out = T)[[1]] %>%
                          list2DF() %>% select(df, pvalue) %>% mutate(covType = 'Oracle')
                        data_temp = commutatorTest(mu.bar, cn = CovRate, cov.arr = cov.bar,
                                                   param.out = T)[[1]] %>%
                          list2DF() %>% select(df, pvalue) %>% mutate(covType = 'Plugin') %>%
                          bind_rows(data_temp) %>%
-                         mutate(SNR = SNR, Dimension = d[i], SampleSize = round(CovRate^2), testType = 'COM')
+                         mutate(SNR = paste0('SNR = ', ifelse(snr == 0, '$\\infty$', round(1/snr))),
+                                Dimension = d[i], SampleSize = round(CovRate^2), testType = 'COM')
 
                        eigvPLG = JDTE(mu.bar)
 
@@ -78,7 +81,7 @@ if (simu_pval) {
                          mutate(covType = 'Plugin', spaceType = 'poly-PLG') %>%
                          bind_rows(data_LLR)
 
-                       if (SNR == '1/SNR=0') {
+                       if (snr == 0) {
                          data_LLR = projTest(mu.bar, refMat = means[,1,,],
                                              cn = CovRate, param.out = T) %>%
                            list2DF() %>% select(df, pvalue) %>%
@@ -102,7 +105,8 @@ if (simu_pval) {
                        }
                        #                       })
                        return(data_LLR %>%
-                                mutate(SNR = SNR, Dimension = d[i],
+                                mutate(SNR = paste0('SNR = ', ifelse(snr == 0, '$\\infty$', round(1/snr))),
+                                       Dimension = d[i],
                                        SampleSize = paste0('Sample size $n = ', round(CovRate^2), '$'),
                                        testType = 'LLR') %>%
                                 bind_rows(data_temp)
@@ -121,4 +125,11 @@ if (simu_pval) {
 ###### Test sizes ######
 data_highD_summary = data_highD %>%
   group_by(covType, spaceType, Dimension, SNR, SampleSize, testType) %>%
-  summarise(RejRate = mean(pvalue <= 0.05), df = mean(df)) %>% print(n = nrow(.))
+  summarise(RejRate = mean(pvalue <= 0.05), df = mean(df)) %>%
+  mutate(covType = paste(covType, 'Cov'),
+         spaceType = gsub('poly-ORC', 'Oracle (A.5)', spaceType),
+         spaceType = gsub('poly-PLG', 'Plugin (A.5)', spaceType),
+         spaceType = gsub('eigv-ORC', 'Oracle (A.6)', spaceType),
+         spaceType = gsub('eigv-PLG', 'Plugin (A.6)', spaceType)) %>%
+  ungroup %>% print(n = nrow(.))
+

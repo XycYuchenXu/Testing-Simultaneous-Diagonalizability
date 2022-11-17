@@ -14,7 +14,7 @@ For some implementation examples, please refer to the vignette with `browseVigne
 
 Some other dependencies for reproduction can be installed with:
 ```
-install.packages(c('devtools', 'foreach', 'doSNOW', 'tidyverse', 'tikzDevice', 'ggpattern', 'plotrix', 'reshape2', 'latex2exp', 'WDI', 'OECD', 'x12', 'pdfetch', 'jsonlite', 'MTS'))
+install.packages(c('devtools', 'foreach', 'parallel', 'doSNOW', 'tidyverse', 'tikzDevice', 'ggpattern', 'plotrix', 'reshape2', 'latex2exp', 'WDI', 'OECD', 'x12', 'pdfetch', 'jsonlite', 'MTS'))
 ```
 
 ## Code

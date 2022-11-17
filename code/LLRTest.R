@@ -184,5 +184,8 @@ ggsave(filename = 'output/Plots/png/PvalueLLR.png', p1, width = 6, height = 7.5,
 ###### Type I/II errors ######
 data_l %>% filter(covType == 'Plugin') %>%
   group_by(spaceType, SNR, SampleSize) %>%
-  summarise(RejRate = mean(pvalue <= 0.05)) %>% print(n = nrow(.))
+  summarise(RejRate = mean(pvalue <= 0.05)) %>%
+  mutate(spaceType = gsub('eqref\\{eqn:polyP\\}', '(A.5)', spaceType),
+         spaceType = gsub('eqref\\{eqn:eigvP\\}', '(A.6)', spaceType)) %>%
+  ungroup %>% print(n = nrow(.))
 
