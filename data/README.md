@@ -2,9 +2,9 @@ This `data` folder includes:
 
 1. `commutatorTest.RData`: raw p-values for commutator-based test simulations (Section 3 & 6.2);
 
-2. `LLRTest.RData`: raw p-values for log-likelihood ratio test simulations (Section B at supplementary);
+2. `LLRTest.RData`: raw p-values for log-likelihood ratio test simulations (Section A at supplementary);
 
-3. `highD_Test.RData`: raw p-values for two-sample test simulations under high-dimensional setting (with increasing and relatively larger dimensions, Section A.3 at supplementary);
+3. `highD_Test.RData`: raw p-values for two-sample test simulations under high-dimensional setting (with increasing and relatively larger dimensions, Section B.3 at supplementary);
 
 4. `multiTest.RData`: raw p-values for multi-sample test simulations (Section 4 & 6.3);
 

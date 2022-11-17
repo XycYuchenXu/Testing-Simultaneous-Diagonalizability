@@ -4,9 +4,9 @@ This `output` folder includes output objects from manuscript implementations wit
 
     a. `commutatorTest.RData`: raw p-values for commutator-based test simulations (Section 3 & 6.2);
     
-    b. `LLRTest.RData`: raw p-values for log-likelihood ratio test simulations (Section B at supplementary);
+    b. `LLRTest.RData`: raw p-values for log-likelihood ratio test simulations (Section A at supplementary);
     
-    c. `highD_Test.RData`: raw p-values for two-sample test simulations under high-dimensional setting (with increasing and relatively larger dimensions, Section A.3 at supplementary);
+    c. `highD_Test.RData`: raw p-values for two-sample test simulations under high-dimensional setting (with increasing and relatively larger dimensions, Section B.3 at supplementary);
     
     d. `multiTest.RData`: raw p-values for multi-sample test simulations (Section 4 & 6.3);
     
