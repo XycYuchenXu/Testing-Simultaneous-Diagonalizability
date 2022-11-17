@@ -14,12 +14,12 @@ This `output` folder includes output objects from manuscript implementations wit
     
     f. `countryMacro.RData`: the `list` of macroeconomic quarterly time series for 8 countries - the intermediate output after online retrieval and initial processing.
     
-    These first 5 files of p-values are also viewed as data to generate summary histograms and error tables, and hence have duplicates in the [`data`](../data) folder.
+    These first 5 files of p-values are also viewed as data to generate summary histograms and error tables, and hence have duplicates in the [data](../data) folder.
 
 2. `Error Tables.xlsx`: the summarised type I/II errors for all simulations setups;
 
-3. [`Plots`](Plots):
+3. [Plots](Plots):
 
-    a. [`tikz`](Plots/tikz): folder of source `tikz` files for compiling the manuscript;
+    a. [tikz](Plots/tikz): folder of source `tikz` files for compiling the manuscript;
     
-    b. [`png`](Plots/png): folder of `png` files for visualization.
+    b. [png](Plots/png): folder of `png` files for visualization.
