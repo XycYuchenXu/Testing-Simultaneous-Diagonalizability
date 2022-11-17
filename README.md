@@ -6,7 +6,9 @@ This is the reproducible repository for the paper _Testing Simultaneous Diagonal
 The `R` package [`eigTest`](https://github.com/XycYuchenXu/eigTest) is available at Github. Brief usage descriptions are available there.
 
 To install, run the following code in `R`:
-`devtools::install_github('XycYuchenXu/eigTest', force = T, build_vignettes = T)`
+```
+devtools::install_github('XycYuchenXu/eigTest', force = T, build_vignettes = T)
+```
 
 For some implementation examples, please refer to the vignette with `browseVignettes('eigTest')`.
 
