@@ -6,6 +6,7 @@ library(doSNOW)
 library(tidyverse)
 library(tikzDevice)
 library(ggpattern)
+library(latex2exp)
 
 
 ###### generate / load p-values ######

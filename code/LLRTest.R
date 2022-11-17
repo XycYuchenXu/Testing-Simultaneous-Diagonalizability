@@ -6,6 +6,7 @@ library(doSNOW)
 library(tidyverse)
 library(tikzDevice)
 library(ggpattern)
+library(latex2exp)
 
 
 ###### generate / load p-values ######
@@ -144,10 +145,10 @@ dev.off()
 # generate png file
 p1 = ggplot(data_l %>% filter(covType == 'Plugin') %>%
               mutate(spaceType = recode_factor(spaceType,
-                                               `Oracle eqref{eqn:polyP}` = 'Oracle (B.5)',
-                                               `Plugin eqref{eqn:polyP}` = 'Plugin (B.5)',
-                                               `Oracle eqref{eqn:eigvP}` = 'Oracle (B.6)',
-                                               `Plugin eqref{eqn:eigvP}` = 'Plugin (B.6)'))) +
+                                               `Oracle eqref{eqn:polyP}` = 'Oracle (A.5)',
+                                               `Plugin eqref{eqn:polyP}` = 'Plugin (A.5)',
+                                               `Oracle eqref{eqn:eigvP}` = 'Oracle (A.6)',
+                                               `Plugin eqref{eqn:eigvP}` = 'Plugin (A.6)'))) +
   geom_histogram_pattern(aes(x = pvalue, y = after_stat(density)*binwidth, fill = SNR),
                          pattern = rep(c(rep('none', 20 * length(n)),
                                          rep(c(rep('none', 20),
