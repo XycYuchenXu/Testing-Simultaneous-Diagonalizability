@@ -3,6 +3,11 @@
 This is the reproducible repository for the paper *_Testing Simultaneous Diagonalizability_*. It mainly relies on the `R` package [`eigTest`](https://github.com/XycYuchenXu/eigTest).
 
 ## Setup
+For setup, first install some dependency packages (if not installed already) for reproduction with:
+```
+install.packages(c('devtools', 'foreach', 'parallel', 'doSNOW', 'tidyverse', 'tikzDevice', 'ggpattern', 'plotrix', 'reshape2', 'latex2exp', 'WDI', 'OECD', 'x12', 'pdfetch', 'jsonlite', 'MTS'))
+```
+
 The `R` package [`eigTest`](https://github.com/XycYuchenXu/eigTest) is available at Github. Brief usage descriptions are available there.
 
 To install, run the following code in `R`:
@@ -11,11 +16,6 @@ devtools::install_github('XycYuchenXu/eigTest', force = T, build_vignettes = T)
 ```
 
 For some implementation examples, please refer to the vignette with `browseVignettes('eigTest')`.
-
-Some other dependencies for reproduction can be installed with:
-```
-install.packages(c('devtools', 'foreach', 'parallel', 'doSNOW', 'tidyverse', 'tikzDevice', 'ggpattern', 'plotrix', 'reshape2', 'latex2exp', 'WDI', 'OECD', 'x12', 'pdfetch', 'jsonlite', 'MTS'))
-```
 
 ## Code
 The folder [code](code) includes the scripts for different simulation studies and applications in the paper.
