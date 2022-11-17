@@ -390,7 +390,7 @@ ggplot(data = pair.test2plot, aes(x = Var2, y = Var1, fill = value)) +
   guides(fill = guide_colorbar(barwidth = 1.5, barheight = 7, title.vjust = 1,
                                title.position = "top", title.hjust = 0.5,
                                title.theme = element_text(margin = margin(0,0,8,0))))+
-  geom_tile(data = groupMat, aes(x = Var1, y = Var2), colour = "red", fill = NA, size = 1)
+  geom_tile(data = groupMat, aes(x = Var1, y = Var2), colour = "red", fill = NA, linewidth = 1)
 dev.off()
 
 # generate png file
@@ -417,7 +417,7 @@ p2 = ggplot(data = pair.test2plot, aes(x = Var2, y = Var1, fill = value)) +
   guides(fill = guide_colorbar(barwidth = 1.5, barheight = 7, title.vjust = 1,
                                title.position = "top", title.hjust = 0.5,
                                title.theme = element_text(margin = margin(0,0,8,0))))+
-  geom_tile(data = groupMat, aes(x = Var1, y = Var2), colour = "red", fill = NA, size = 1)
+  geom_tile(data = groupMat, aes(x = Var1, y = Var2), colour = "red", fill = NA, linewidth = 1)
 p2
 ggsave(filename = 'output/Plots/png/pvalMat.png', width = 5, height = 4.5, units = 'in')
 

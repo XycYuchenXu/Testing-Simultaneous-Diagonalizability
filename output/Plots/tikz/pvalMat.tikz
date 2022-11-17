@@ -1,4 +1,4 @@
-% Created by tikzDevice version 0.12.3.1 on 2022-11-07 16:50:17
+% Created by tikzDevice version 0.12.3.1 on 2022-11-17 10:54:07
 % !TEX encoding = UTF-8 Unicode
 \begin{tikzpicture}[x=1pt,y=1pt]
 \definecolor{fillColor}{RGB}{255,255,255}
@@ -399,7 +399,7 @@
 
 \node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  1.00] at ( 28.41, 51.97) {CHN};
 
-\node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  1.00] at ( 28.41, 83.83) {JAP};
+\node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  1.00] at ( 28.41, 83.83) {JPN};
 
 \node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  1.00] at ( 28.41,115.69) {KOR};
 
@@ -429,7 +429,7 @@
 
 \node[text=drawColor,rotate= 45.00,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  1.00] at (216.67, 26.47) {KOR};
 
-\node[text=drawColor,rotate= 45.00,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  1.00] at (248.53, 26.47) {JAP};
+\node[text=drawColor,rotate= 45.00,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  1.00] at (248.53, 26.47) {JPN};
 
 \node[text=drawColor,rotate= 45.00,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  1.00] at (280.39, 26.47) {CHN};
 \end{scope}
