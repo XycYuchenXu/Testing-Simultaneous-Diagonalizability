@@ -1,6 +1,6 @@
 # Testing Simultaneous Diagonalizability
 
-This is the reproducible repository for the paper *_Testing Simultaneous Diagonalizability_*. It mainly relies on the `R` package [`eigTest`](https://github.com/XycYuchenXu/eigTest).
+This is the reproducible repository for the paper [*_Testing Simultaneous Diagonalizability_*](https://doi.org/10.1080/01621459.2023.2202435). It mainly relies on the `R` package [`eigTest`](https://github.com/XycYuchenXu/eigTest).
 
 ## Setup
 For setup, first install some dependency packages (if not installed already) for reproduction with:
